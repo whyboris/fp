@@ -39,8 +39,7 @@ include('header.php');
         <table id="example" class="table table-striped table-bordered" >
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Author</th>
+                    <th><center>#</center></th>
                     <th>Title</th>
                     <th>Content</th>
                     <th>Excerpt</th>
@@ -52,7 +51,6 @@ include('header.php');
                 <?php foreach($articles as $post){ ?>
                     <tr>
                         <td><center><a href="post.php?id=<?php echo $post['_id']; ?>"><?php echo $tempCounter; $tempCounter++ ?></a></center></td>
-                        <td><?php echo $post['author']; ?></td>
                         <td><?php echo $post['title']; ?></td>
                         <td><?php echo substr($post['content'], 0, 100) . '...'; ?></td>
                         <td><?php echo substr($post['excerpt'], 0, 30) . '...'; ?></td>

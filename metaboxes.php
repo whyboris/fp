@@ -38,58 +38,72 @@ function metaboxSuffix() {
 
 // describe all meta boxes
 
-createMetaBox('What is your favorite part of the day?', 'timeOfDay', 'manyRadioButtons');
+function getPartsOfDay() {
+    $partsArray = array(
+        'morning'=>'Morning',
+        'afternoon'=>'Afternoon',
+        'evening'=>'Evening',
+    );
+    return $partsArray;
+}
 
-function manyRadioButtons($uniqueId) {
-?>
+createMetaBox('What is your favorite part of the day?', 'timeOfDay', 'bestPardOfDay');
 
-    <div class="radio">
-      <label><input type="radio" name="<?php echo $uniqueId; ?>" value="morning">Morning</label>
-    </div>
-    <div class="radio">
-      <label><input type="radio" name="<?php echo $uniqueId; ?>" value="afternoon">Afternoon</label>
-    </div>
-    <div class="radio">
-      <label><input type="radio" name="<?php echo $uniqueId; ?>" value="evening">Evening</label>
-    </div>
+function bestPardOfDay($uniqueId) {
 
-<?php
+    foreach (getPartsOfDay() as $key => $value) {
+        echo '<div class="radio">';
+        echo '<label><input type="radio" name="' . $uniqueId . '" value="' . $key . '">' . $value . '</label>';
+        echo '</div>';
+    }
 
 }
 
-createMetaBox('Which flavor(s) do you like?', 'flavors', 'manyCheckBoxes');
+function getFaveFlavors() {
+    $flavorsArray = array(
+        'chocolate'=>'Chocolate',
+        'vanilla'=>'Vanilla',
+        'strawberry'=>'Strawberry',
+    );
+    return $flavorsArray;
+}
 
-function manyCheckBoxes($uniqueId) {
-?>
+createMetaBox('Which flavor(s) do you like?', 'flavors', 'faveFlavors');
 
-    <div class="checkbox">
-      <label><input type="checkbox" name="<?php echo $uniqueId; ?>[]" value="chocolate">chocolate</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox" name="<?php echo $uniqueId; ?>[]" value="vanilla">vanilla</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox" name="<?php echo $uniqueId; ?>[]" value="strawberry">strawberry</label>
-    </div>
+function faveFlavors($uniqueId) {
 
-<?php
+    foreach (getFaveFlavors() as $key => $value) {
+        echo '<div class="checkbox">';
+        echo '<label><input type="checkbox" name="' . $uniqueId . '[]" value="'. $key . '">' . $value . '</label>';
+        echo '</div>';
+    }
+}
+
+
+function getCarTypes() {
+    $carArray = array(
+        'volvo' => 'Volvo',
+        'saab' => 'Saab',
+        'fiat' => 'Fiat',
+        'audi' => 'Audi',
+    );
+    return $carArray;
 }
 
 createMetaBox('What is the best car?', 'bestCar', 'aDropDown');
 
 function aDropDown($uniqueId) {
-?>
 
-    <div class="selectpicker">
-        <select class="form-control" name="<?php echo $uniqueId; ?>" >
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="fiat">Fiat</option>
-            <option value="audi">Audi</option>
-        </select>
-    </div>
+    echo '<div class="selectpicker">';
+    echo '<select class="form-control" name="' . $uniqueId . '">';
 
-<?php
+    foreach (getCarTypes() as $key => $value) {
+        echo '<option value="' . $key . '">' . $value . '</option>';
+    }
+    
+    echo '</select>';
+    echo '</div>';
+
 }
 
 
