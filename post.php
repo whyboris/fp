@@ -53,15 +53,13 @@ include('metaboxes.php');
 
 displayAllMetaBoxes();
 
+
+// store all post meta-data into array!
 $arrayOfSelectedOptions = array();
-
 foreach ($allMetaBoxes as $key => $value) {
-
     $fieldName = $allMetaBoxes[$key][1];
-    $fieldValue = $post[$allMetaBoxes[$key][1]];
-
+    $fieldValue = $post[$fieldName];
     $arrayOfSelectedOptions[$fieldName] = $fieldValue;
-
 }
 
 echo "<pre>";

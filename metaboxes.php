@@ -9,7 +9,7 @@ function displayAllMetaBoxes(){
 
     global $allMetaBoxes;
     foreach ($allMetaBoxes as $key => $value) {
-        metaboxPrefix($allMetaBoxes[$key][0]);
+        metaboxPrefix($allMetaBoxes[$key][0],$allMetaBoxes[$key][1]);
         $allMetaBoxes[$key][2]($allMetaBoxes[$key][1]);
         metaboxSuffix();
     }
@@ -28,12 +28,13 @@ function createMetaBox($displayName, $uniqueId, $functionToCall) {
     //metaboxSuffix();
 }
 
-function metaboxPrefix($displayName) {
-    echo '<label for="excerpt">' . $displayName. '</label><br>';
+function metaboxPrefix($displayName, $uniqueId) {
+    echo '<div class="" id="' . $uniqueId . '">';
+    echo '<label for="' . $uniqueId . '">' . $displayName. '</label><br>';
 }
 
 function metaboxSuffix() {
-    echo "<br>";
+    echo "</div>";
 }
 
 // describe all meta boxes
@@ -100,7 +101,7 @@ function aDropDown($uniqueId) {
     foreach (getCarTypes() as $key => $value) {
         echo '<option value="' . $key . '">' . $value . '</option>';
     }
-    
+
     echo '</select>';
     echo '</div>';
 
@@ -108,7 +109,7 @@ function aDropDown($uniqueId) {
 
 
 
-createMetaBox('What is your favorite ice cream?', 'bestIceCream', 'iceCreamDropDown');
+//createMetaBox('What is your favorite ice cream?', 'bestIceCream', 'iceCreamDropDown');
 
 function iceCreamDropDown($uniqueId) {
 ?>
@@ -117,7 +118,7 @@ function iceCreamDropDown($uniqueId) {
         <select class="form-control" name="<?php echo $uniqueId; ?>" >
             <option value="chocolate">Chocolate</option>
             <option value="vanilla">vanilla</option>
-            <option value="cookie">cookie</option>
+            <option value="cookie" selected>cookie</option>
             <option value="pb">PB</option>
         </select>
     </div>
