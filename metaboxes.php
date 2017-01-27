@@ -14,24 +14,12 @@ function getPartsOfDay() {
     return $partsArray;
 }
 
-registerMetaBox('What is your favorite part of the day?', 'timeOfDay', 'bestPardOfDay', 3);
+registerMetaBox('What is your favorite part of the day?', 'timeOfDay', 'bestPartOfDay', 1);
 
-function bestPardOfDay($uniqueId) {
+function bestPartOfDay($uniqueId) {
 
-    $chosenValue = fpGetMetaValue($uniqueId);
-
-    foreach (getPartsOfDay() as $key => $value) {
-
-        $selected = '';
-        if ($chosenValue == $key) {
-            $selected = 'checked';
-        }
-
-        echo '<div class="radio">';
-        echo '<label><input type="radio" name="' . $uniqueId . '" value="' . $key . '" '.$selected.'>' . $value . '</label>';
-        echo '</div>';
-    }
-
+    createRadioButtons(getPartsOfDay(), $uniqueId);
+    
 }
 
 function getFaveFlavors() {
@@ -77,6 +65,7 @@ function getCarTypes() {
         'saab' => 'Saab',
         'fiat' => 'Fiat',
         'audi' => 'Audi',
+        'honda' => 'Honda',
     );
     return $carArray;
 }

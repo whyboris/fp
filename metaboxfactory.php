@@ -64,4 +64,24 @@ function fpGetMetaValue($uniqueId) {
     }
 }
 
+
+function createRadioButtons($array, $uniqueId) {
+
+    $chosenValue = fpGetMetaValue($uniqueId);
+
+    foreach ($array as $key => $value) {
+
+        $selected = '';
+        if ($chosenValue == $key) {
+            $selected = 'checked';
+        }
+
+        echo '<div class="radio">';
+        echo '<label><input type="radio" name="' . $uniqueId . '" value="' . $key . '" '.$selected.'>' . $value . '</label>';
+        echo '</div>';
+    }
+
+}
+
+
 ?>
