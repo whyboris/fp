@@ -1,6 +1,5 @@
 <?php
 
-
 include('metaboxfactory.php');
 
 // describe all meta boxes
