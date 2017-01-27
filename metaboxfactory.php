@@ -83,6 +83,24 @@ function createRadioButtons($array, $uniqueId) {
 
 }
 
+function createDropDown($array, $uniqueId) {
+
+    $chosenValue = fpGetMetavalue($uniqueId);
+
+    echo '<div class="selectpicker">';
+    echo '<select class="form-control" name="'. $uniqueId . '">';
+
+    foreach ($array as $key => $value) {
+        $selected = '';
+        if ($chosenValue == $key) {
+            $selected = 'selected';
+        }
+        echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+    }
+    echo '</select>';
+    echo '</div>';
+
+}
 
 function createCheckBoxes($array, $uniqueId) {
 

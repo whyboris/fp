@@ -2,7 +2,9 @@
 
 include('metaboxfactory.php');
 
-// describe all meta boxes
+/**
+ * Create parts of day metabox
+ */
 
 function getPartsOfDay() {
     $partsArray = array(
@@ -14,13 +16,15 @@ function getPartsOfDay() {
     return $partsArray;
 }
 
+function bestPartOfDay($uniqueId) {
+    createRadioButtons(getPartsOfDay(), $uniqueId);
+}
+
 registerMetaBox('What is your favorite part of the day?', 'timeOfDay', 'bestPartOfDay', 1);
 
-function bestPartOfDay($uniqueId) {
-
-    createRadioButtons(getPartsOfDay(), $uniqueId);
-
-}
+/**
+ * Create flavors metabox
+ */
 
 function getFaveFlavors() {
     $flavorsArray = array(
@@ -31,14 +35,15 @@ function getFaveFlavors() {
     return $flavorsArray;
 }
 
-registerMetaBox('Which flavor(s) do you like?', 'flavors', 'faveFlavors', 6);
-
 function faveFlavors($uniqueId) {
-
     createCheckBoxes(getFaveFlavors(), $uniqueId);
-
 }
 
+registerMetaBox('Which flavor(s) do you like?', 'flavors', 'faveFlavors', 6);
+
+/**
+ * Create cars metabox
+ */
 
 function getCarTypes() {
     $carArray = array(
@@ -73,11 +78,9 @@ function aDropDown($uniqueId) {
 
 }
 
-
-
-// HARD CODED for testing -- REMOVE LATER
-
-registerMetaBox('What is your favorite ice cream?', 'bestIceCream', 'iceCreamDropDown', 20);
+/**
+ * Create cars metabox
+ */
 
 function getIceCream() {
     $iceCream = array(
@@ -90,25 +93,10 @@ function getIceCream() {
 }
 
 function iceCreamDropDown($uniqueId) {
-
-    $iceCream = getIceCream();
-
-    $chosenValue = fpGetMetavalue($uniqueId);
-
-    echo '<div class="selectpicker">';
-    echo '<select class="form-control" name="'. $uniqueId . '">';
-
-    foreach ($iceCream as $key => $value) {
-        $selected = '';
-        if ($chosenValue == $key) {
-            $selected = 'selected';
-        }
-        echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
-    }
-    echo '</select>';
-    echo '</div>';
-
+    createDropDown(getIceCream(), $uniqueId);
 }
+
+registerMetaBox('What is your favorite ice cream?', 'bestIceCream', 'iceCreamDropDown', 20);
 
 //echo "</center><pre>";
 //print_r($allMetaBoxes);
