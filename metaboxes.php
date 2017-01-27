@@ -19,7 +19,7 @@ registerMetaBox('What is your favorite part of the day?', 'timeOfDay', 'bestPart
 function bestPartOfDay($uniqueId) {
 
     createRadioButtons(getPartsOfDay(), $uniqueId);
-    
+
 }
 
 function getFaveFlavors() {
@@ -35,27 +35,8 @@ registerMetaBox('Which flavor(s) do you like?', 'flavors', 'faveFlavors', 6);
 
 function faveFlavors($uniqueId) {
 
-    $chosenValue = fpGetMetaValue($uniqueId);
+    createCheckBoxes(getFaveFlavors(), $uniqueId);
 
-    //print_r($chosenValue);
-
-    foreach (getFaveFlavors() as $key => $value) {
-
-        $selected = '';
-
-        // chosen value can be an array!
-        if (isset($chosenValue)) {
-            foreach ($chosenValue as $key2 => $value2) {
-                if ($key == $value2) {
-                    $selected = 'checked';
-                }
-            }
-        }
-
-        echo '<div class="checkbox">';
-        echo '<label><input type="checkbox" name="' . $uniqueId . '[]" value="'. $key . '" '.$selected.'>' . $value . '</label>';
-        echo '</div>';
-    }
 }
 
 

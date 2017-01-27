@@ -84,4 +84,28 @@ function createRadioButtons($array, $uniqueId) {
 }
 
 
+function createCheckBoxes($array, $uniqueId) {
+
+    $chosenValue = fpGetMetaValue($uniqueId);
+
+    foreach ($array as $key => $value) {
+
+        $selected = '';
+
+        // chosen value can be an array!
+        if (isset($chosenValue)) {
+            foreach ($chosenValue as $key2 => $value2) {
+                if ($key == $value2) {
+                    $selected = 'checked';
+                }
+            }
+        }
+
+        echo '<div class="checkbox">';
+        echo '<label><input type="checkbox" name="' . $uniqueId . '[]" value="'. $key . '" '.$selected.'>' . $value . '</label>';
+        echo '</div>';
+    }
+
+}
+
 ?>
