@@ -14,7 +14,6 @@ function getPartsOfDay() {
     return $partsArray;
 }
 
-
 function getFaveFlavors() {
     $flavorsArray = array(
         'chocolate'=>'Chocolate',
@@ -23,7 +22,6 @@ function getFaveFlavors() {
     );
     return $flavorsArray;
 }
-
 
 function getCarTypes() {
     $carArray = array(
@@ -35,7 +33,6 @@ function getCarTypes() {
     );
     return $carArray;
 }
-
 
 function getIceCream() {
     $iceCream = array(

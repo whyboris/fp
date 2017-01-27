@@ -64,6 +64,9 @@ function fpGetMetaValue($uniqueId) {
     }
 }
 
+/**
+ * Creaet Radio Buttons
+ */
 
 function createRadioButtons($array, $uniqueId) {
 
@@ -83,6 +86,10 @@ function createRadioButtons($array, $uniqueId) {
 
 }
 
+/**
+ * Creaet Dropdown
+ */
+
 function createDropDown($array, $uniqueId) {
 
     $chosenValue = fpGetMetavalue($uniqueId);
@@ -101,6 +108,11 @@ function createDropDown($array, $uniqueId) {
     echo '</div>';
 
 }
+
+
+/**
+ * Create check boxes
+ */
 
 function createCheckBoxes($array, $uniqueId) {
 
