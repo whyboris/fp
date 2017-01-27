@@ -1,56 +1,7 @@
 <?php
 
 
-//global $allMetaBoxes;
-$allMetaBoxes = array();
-
-// output all metaboxes
-function displayAllMetaBoxes(){
-
-    global $allMetaBoxes;
-    foreach ($allMetaBoxes as $key => $value) {
-        metaboxPrefix($allMetaBoxes[$key][0],$allMetaBoxes[$key][1]);
-        $allMetaBoxes[$key][2]($allMetaBoxes[$key][1]);
-        metaboxSuffix();
-    }
-
-}
-
-function fpGetMetaValue($uniqueId) {
-    global $allMetaBoxes;
-
-    global $post;
-
-    foreach ($allMetaBoxes as $key => $value) {
-        if ($allMetaBoxes[$key][1] == $uniqueId) {
-            //echo $allMetaBoxes[$key][1];
-            $fieldName = $allMetaBoxes[$key][1];
-            return $post[$fieldName];
-        }
-    }
-
-}
-
-// FACTORY:
-
-function createMetaBox($displayName, $uniqueId, $functionToCall) {
-    global $allMetaBoxes;
-
-    array_push($allMetaBoxes, array($displayName, $uniqueId, $functionToCall));
-
-    //metaboxPrefix($displayName);
-    //$functionToCall($uniqueId);
-    //metaboxSuffix();
-}
-
-function metaboxPrefix($displayName, $uniqueId) {
-    echo '<div class="" id="' . $uniqueId . '">';
-    echo '<label for="' . $uniqueId . '">' . $displayName. '</label><br>';
-}
-
-function metaboxSuffix() {
-    echo "</div>";
-}
+include('metaboxfactory.php');
 
 // describe all meta boxes
 
@@ -63,7 +14,7 @@ function getPartsOfDay() {
     return $partsArray;
 }
 
-createMetaBox('What is your favorite part of the day?', 'timeOfDay', 'bestPardOfDay');
+createMetaBox('What is your favorite part of the day?', 'timeOfDay', 'bestPardOfDay', 3);
 
 function bestPardOfDay($uniqueId) {
 
@@ -92,7 +43,7 @@ function getFaveFlavors() {
     return $flavorsArray;
 }
 
-createMetaBox('Which flavor(s) do you like?', 'flavors', 'faveFlavors');
+createMetaBox('Which flavor(s) do you like?', 'flavors', 'faveFlavors', 6);
 
 function faveFlavors($uniqueId) {
 
@@ -127,7 +78,7 @@ function getCarTypes() {
     return $carArray;
 }
 
-createMetaBox('What is the best car?', 'bestCar', 'aDropDown');
+createMetaBox('What is the best car?', 'bestCar', 'aDropDown', 10);
 
 function aDropDown($uniqueId) {
 
@@ -151,7 +102,9 @@ function aDropDown($uniqueId) {
 
 
 
-//createMetaBox('What is your favorite ice cream?', 'bestIceCream', 'iceCreamDropDown');
+// HARD CODED for testing -- REMOVE LATER
+
+//createMetaBox('What is your favorite ice cream?', 'bestIceCream', 'iceCreamDropDown', 20);
 
 function iceCreamDropDown($uniqueId) {
 ?>
