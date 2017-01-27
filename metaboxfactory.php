@@ -56,7 +56,10 @@ function fpGetMetaValue($uniqueId) {
         if ($allMetaBoxes[$key][1] == $uniqueId) {
             //echo $allMetaBoxes[$key][1];
             $fieldName = $allMetaBoxes[$key][1];
-            return $post[$fieldName];
+            // sometimes the value hasn't yet been saved
+            if (isset($post[$fieldName])){
+                return $post[$fieldName];
+            }
         }
     }
 }

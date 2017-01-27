@@ -58,8 +58,10 @@ displayAllMetaBoxes();
 $arrayOfSelectedOptions = array();
 foreach ($allMetaBoxes as $key => $value) {
     $fieldName = $allMetaBoxes[$key][1];
-    $fieldValue = $post[$fieldName];
-    $arrayOfSelectedOptions[$fieldName] = $fieldValue;
+    if (isset($post[$fieldName])) {
+        $fieldValue = $post[$fieldName];
+        $arrayOfSelectedOptions[$fieldName] = $fieldValue;
+    }
 }
 
 echo "<pre>";

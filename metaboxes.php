@@ -9,6 +9,7 @@ function getPartsOfDay() {
         'morning'=>'Morning',
         'afternoon'=>'Afternoon',
         'evening'=>'Evening',
+        'night'=>'Night',
     );
     return $partsArray;
 }
@@ -106,21 +107,37 @@ function aDropDown($uniqueId) {
 
 // HARD CODED for testing -- REMOVE LATER
 
-//registerMetaBox('What is your favorite ice cream?', 'bestIceCream', 'iceCreamDropDown', 20);
+registerMetaBox('What is your favorite ice cream?', 'bestIceCream', 'iceCreamDropDown', 20);
+
+function getIceCream() {
+    $iceCream = array(
+        'chocolate' => "Chocolate Ice Cream",
+        'vanilla' => "Vanilla Ice Cream",
+        'cookie' => "Cookie Ice Cream",
+        'pb' => "Peanut Butter Ice Cream",
+    );
+    return $iceCream;
+}
 
 function iceCreamDropDown($uniqueId) {
-?>
 
-    <div class="selectpicker">
-        <select class="form-control" name="<?php echo $uniqueId; ?>" >
-            <option value="chocolate">Chocolate</option>
-            <option value="vanilla">vanilla</option>
-            <option value="cookie" selected>cookie</option>
-            <option value="pb">PB</option>
-        </select>
-    </div>
+    $iceCream = getIceCream();
 
-<?php
+    $chosenValue = fpGetMetavalue($uniqueId);
+
+    echo '<div class="selectpicker">';
+    echo '<select class="form-control" name="'. $uniqueId . '">';
+
+    foreach ($iceCream as $key => $value) {
+        $selected = '';
+        if ($chosenValue == $key) {
+            $selected = 'selected';
+        }
+        echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+    }
+    echo '</select>';
+    echo '</div>';
+
 }
 
 //echo "</center><pre>";
