@@ -13,7 +13,7 @@ function getPartsOfDay() {
     return $partsArray;
 }
 
-createMetaBox('What is your favorite part of the day?', 'timeOfDay', 'bestPardOfDay', 3);
+registerMetaBox('What is your favorite part of the day?', 'timeOfDay', 'bestPardOfDay', 3);
 
 function bestPardOfDay($uniqueId) {
 
@@ -42,7 +42,7 @@ function getFaveFlavors() {
     return $flavorsArray;
 }
 
-createMetaBox('Which flavor(s) do you like?', 'flavors', 'faveFlavors', 6);
+registerMetaBox('Which flavor(s) do you like?', 'flavors', 'faveFlavors', 6);
 
 function faveFlavors($uniqueId) {
 
@@ -54,9 +54,12 @@ function faveFlavors($uniqueId) {
 
         $selected = '';
 
-        foreach ($chosenValue as $key2 => $value2) {
-            if ($key == $value2) {
-                $selected = 'checked';
+        // chosen value can be an array!
+        if (isset($chosenValue)) {
+            foreach ($chosenValue as $key2 => $value2) {
+                if ($key == $value2) {
+                    $selected = 'checked';
+                }
             }
         }
 
@@ -77,7 +80,7 @@ function getCarTypes() {
     return $carArray;
 }
 
-createMetaBox('What is the best car?', 'bestCar', 'aDropDown', 10);
+registerMetaBox('What is the best car?', 'bestCar', 'aDropDown', 10);
 
 function aDropDown($uniqueId) {
 
@@ -103,7 +106,7 @@ function aDropDown($uniqueId) {
 
 // HARD CODED for testing -- REMOVE LATER
 
-//createMetaBox('What is your favorite ice cream?', 'bestIceCream', 'iceCreamDropDown', 20);
+//registerMetaBox('What is your favorite ice cream?', 'bestIceCream', 'iceCreamDropDown', 20);
 
 function iceCreamDropDown($uniqueId) {
 ?>

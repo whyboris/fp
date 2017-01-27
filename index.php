@@ -18,7 +18,10 @@ include('header.php');
 
     require 'connection.php';
 
+    $isAdmin = false;
+
     if ($_SESSION['name'] == 'admin'){
+        $isAdmin = true;
         $searchQuery = array();
     } else {
         $searchQuery = array('author'=>$_SESSION['name']);
@@ -40,8 +43,13 @@ include('header.php');
             <thead>
                 <tr>
                     <th><center>#</center></th>
+<?php
+
+    if ($isAdmin == true){
+        echo "<th>Author</th>";
+    }
+?>
                     <th>Title</th>
-                    <th>Content</th>
                     <th>Excerpt</th>
                     <th>Time</th>
                     <th>Delete</th>
@@ -51,8 +59,16 @@ include('header.php');
                 <?php foreach($articles as $post){ ?>
                     <tr>
                         <td><center><a href="post.php?id=<?php echo $post['_id']; ?>"><?php echo $tempCounter; $tempCounter++ ?></a></center></td>
+<?php
+
+    if ($isAdmin == true){
+        echo "<td>";
+        echo $post['author'];
+        echo "</td>";
+    }
+
+?>
                         <td><?php echo $post['title']; ?></td>
-                        <td><?php echo substr($post['content'], 0, 100) . '...'; ?></td>
                         <td><?php echo substr($post['excerpt'], 0, 30) . '...'; ?></td>
                         <td><?php echo date('Y-M-d h:i:s', $post['time']->sec); ?></td>
                         <td><center><a href="delete.php?id=<?php echo $post['_id']; ?>">x</a></td>

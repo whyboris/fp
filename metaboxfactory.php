@@ -1,17 +1,22 @@
 <?php
 
-//global $allMetaBoxes;
+//global $allMetaBoxes initialize empty array;
 $allMetaBoxes = array();
 
-// output all metaboxes
+// Register meta boxes
+function registerMetaBox($displayName, $uniqueId, $functionToCall, $order = 5) {
+    global $allMetaBoxes;
+    array_push($allMetaBoxes, array($displayName, $uniqueId, $functionToCall, $order));
+}
+
+
+// output metabox HTML
 function displayAllMetaBoxes(){
 
     global $allMetaBoxes;
 
     // custom sort the metaboxes according to their order (4th element in array)
     function compareOrder($a, $b) {
-        //print_r($a['3']);
-        //print_r($b['3']);
         return $a['3'] - $b['3'];
     }
     usort($allMetaBoxes, 'compareOrder');
@@ -22,6 +27,17 @@ function displayAllMetaBoxes(){
         metaboxSuffix();
     }
 
+}
+
+// metabox top HTML
+function metaboxPrefix($displayName, $uniqueId) {
+    echo '<div class="" id="' . $uniqueId . '">';
+    echo '<label for="' . $uniqueId . '">' . $displayName. '</label><br>';
+}
+
+// metabox bottom HTML
+function metaboxSuffix() {
+    echo "</div>";
 }
 
 /**
@@ -43,29 +59,6 @@ function fpGetMetaValue($uniqueId) {
             return $post[$fieldName];
         }
     }
-
 }
-
-// FACTORY:
-
-function createMetaBox($displayName, $uniqueId, $functionToCall, $order = 5) {
-    global $allMetaBoxes;
-
-    array_push($allMetaBoxes, array($displayName, $uniqueId, $functionToCall, $order));
-
-    //metaboxPrefix($displayName);
-    //$functionToCall($uniqueId);
-    //metaboxSuffix();
-}
-
-function metaboxPrefix($displayName, $uniqueId) {
-    echo '<div class="" id="' . $uniqueId . '">';
-    echo '<label for="' . $uniqueId . '">' . $displayName. '</label><br>';
-}
-
-function metaboxSuffix() {
-    echo "</div>";
-}
-
 
 ?>
