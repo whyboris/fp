@@ -31,12 +31,15 @@ function displayAllMetaBoxes(){
 
 // metabox top HTML
 function metaboxPrefix($displayName, $uniqueId) {
-    echo '<div class="well well-md" id="' . $uniqueId . '">';
-    echo '<label for="' . $uniqueId . '">' . $displayName. '</label><br>';
+    echo '<div class="panel panel-default" id="' . $uniqueId . '">';
+    //echo '<label for="' . $uniqueId . '">' . $displayName. '</label><br>';
+    echo '<div class="panel-heading">' . $displayName . '</div>';
+    echo '<div class="panel-body">';
 }
 
 // metabox bottom HTML
 function metaboxSuffix() {
+    echo "</div>";
     echo "</div>";
 }
 
