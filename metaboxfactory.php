@@ -31,7 +31,7 @@ function displayAllMetaBoxes(){
 
 // metabox top HTML
 function metaboxPrefix($displayName, $uniqueId) {
-    echo '<div class="" id="' . $uniqueId . '">';
+    echo '<div class="well well-md" id="' . $uniqueId . '">';
     echo '<label for="' . $uniqueId . '">' . $displayName. '</label><br>';
 }
 

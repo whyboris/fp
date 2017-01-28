@@ -23,6 +23,18 @@ function getFaveFlavors() {
     return $flavorsArray;
 }
 
+function getFaveDrink() {
+    $flavorsArray = array(
+        'water'=>'Water',
+        'soda'=>'Soda',
+        'milk'=>'Milk',
+        'water2'=>'Water2',
+        'soda2'=>'Soda2',
+        'milk2'=>'Milk2',
+    );
+    return $flavorsArray;
+}
+
 function getCarTypes() {
     $carArray = array(
         'volvo' => 'Volvo',

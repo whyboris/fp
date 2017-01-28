@@ -23,6 +23,11 @@ function iceCreamDropDown($uniqueId) {
 }
 registerMetaBox('What is your favorite ice cream?', 'bestIceCream', 'iceCreamDropDown', 8);
 
+
+function favoriteDrink($uniqueId) {
+    createDropDown(getFaveDrink(), $uniqueId);
+}
+registerMetaBox('What is your favoriet drink?', 'faveDrink', 'favoriteDrink', 10);
 //echo "</center><pre>";
 //print_r($allMetaBoxes);
 //echo "</pre>";

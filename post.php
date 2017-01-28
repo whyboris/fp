@@ -23,11 +23,12 @@ if(!empty($_GET['id'])){
 
 ?>
 
-<div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-sm-2">
-        </div>
-        <div class="form-group col-sm-6">
+<div class="container-fluid">
+
+    <div class="row row-fluid">
+
+        <div class="col-md-8">
+
             <form class="bs-example bs-example-form" action="submit.php" method="post">
 
                 <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
@@ -45,7 +46,9 @@ if(!empty($_GET['id'])){
                 <label for="excerpt">Excerpt:</label>
                 <textarea class="form-control" name="excerpt" rows="3"><?php echo $excerpt; ?></textarea>
 
-                <br>
+        </div>
+
+        <div class="col-md-4">
 
 <?php
 
@@ -64,6 +67,7 @@ foreach ($allMetaBoxes as $key => $value) {
     }
 }
 
+echo "<div style='clear: both'>";
 echo "<pre>";
 print_r($arrayOfSelectedOptions);
 echo "</pre>";
