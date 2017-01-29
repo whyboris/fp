@@ -16,6 +16,8 @@ if(!empty($_SESSION['name'])){
     <script src="assets/bootstrap.min.js"></script>
     <link href="assets/bootstrap.min.css" rel="stylesheet">
     <link href="assets/custom.css" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
 
 <?php
     if (isset($dataTables)) {

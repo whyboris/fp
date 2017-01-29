@@ -15,7 +15,7 @@ if(!empty($_GET['id'])){
 
     $id = $_GET['id'];
     $query = array('_id'=> new MongoId($id));
-    $post = $collection->findOne($query);
+    $post = $postCollection->findOne($query);
 
     $title = $post['title'];
     $content =  $post['content'];
