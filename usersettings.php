@@ -44,31 +44,31 @@ function renderUserSetting($displayName, $fieldName, $value){
 
 include('usersettingscreation.php');
 
-metaboxPrefix('Personal', 'personalMetabox');
+function displayUserSettingsGroup($groupDisplayName, $groupDivId, $groupNumber) {
 
-foreach ($allUserMeta as $key => $value) {
-    if ($value[2] == 1) {
-        renderUserSetting($value[0], $value[1], $userSettings[$value[1]]);
+    metaboxPrefix($groupDisplayName, $groupDivId);
+
+    global $allUserMeta;
+    global $userSettings;
+
+    foreach ($allUserMeta as $key => $value) {
+        if ($value[2] == $groupNumber) {
+            if (isset($userSettings[$value[1]])){
+                renderUserSetting($value[0], $value[1], $userSettings[$value[1]]);
+            } else {
+                renderUserSetting($value[0], $value[1], '');
+            }
+        }
     }
-}
-//renderUserSetting('First Name', 'name', $id);
-//renderUserSetting('Last Name', 'lastName', $lastName);
-//renderUserSetting('Twitter', 'twitter', $twitter);
 
-metaboxSuffix();
+    metaboxSuffix();
 
-metaboxPrefix('Professional', 'professionalMetabox');
-
-foreach ($allUserMeta as $key => $value) {
-    if ($value[2] == 2) {
-        renderUserSetting($value[0], $value[1], $userSettings[$value[1]]);
-    }
 }
 
-//renderUserSetting('Contributor Type', 'type', $type);
-//renderUserSetting('Salary', 'salary', $salary);
+displayUserSettingsGroup('Personal', 'personalMetabox', 1);
 
-metaboxSuffix();
+displayUserSettingsGroup('Professional', 'professionalMetabox', 2);
+
 
 echo '<div><input class="btn btn-default" type="submit" value="Save"></div>';
 
