@@ -33,14 +33,18 @@ function displayAllMetaBoxes(){
 function metaboxPrefix($displayName, $uniqueId) {
     echo '<div class="panel panel-default" id="' . $uniqueId . '">';
     //echo '<label for="' . $uniqueId . '">' . $displayName. '</label><br>';
-    echo '<div class="panel-heading">' . $displayName . '</div>';
+    echo '<div class="panel-heading">' . $displayName;
+    echo '<div class="pull-right"><a href="#'. $uniqueId .'Panel" data-toggle="collapse" class="text-right btn btn-xs">&#x25BE;</a></div>';
+    echo '</div>';
+    echo '<div id="'.$uniqueId.'Panel" class="panel-collapse collapse in">';
     echo '<div class="panel-body">';
 }
 
 // metabox bottom HTML
 function metaboxSuffix() {
-    echo "</div>";
-    echo "</div>";
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
 }
 
 /**

@@ -9,7 +9,7 @@ function getPartsOfDay() {
         'morning'=>'Morning',
         'afternoon'=>'Afternoon',
         'evening'=>'Evening',
-        'night'=>'Night',
+//        'night'=>'Night',
     );
     return $partsArray;
 }

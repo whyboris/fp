@@ -2,6 +2,8 @@
 
 include('header.php');
 
+include('metaboxes.php');
+
 $id = 0;
 $title = '';
 $content = '';
@@ -33,28 +35,30 @@ if(!empty($_GET['id'])){
 
                 <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
 
-                <label for="title">Title:</label>
-                <input type="text"  class="form-control" name="title" value="<?php echo $title; ?>">
-
-                <br>
-
-                <label for="content">Content:</label>
-                <textarea class="form-control" name="content" rows="10"><?php echo $content; ?></textarea>
-
-                <br>
-
-                <label for="excerpt">Excerpt:</label>
-                <textarea class="form-control" name="excerpt" rows="3"><?php echo $excerpt; ?></textarea>
-
-        </div>
-
-        <div class="col-md-4">
-
 <?php
+    metaboxPrefix('Title', 'titleMetabox');
 
-include('metaboxes.php');
+    echo '<input type="text"  class="form-control" name="title" value="' . $title . '">';
 
-displayAllMetaBoxes();
+    metaboxSuffix();
+
+    metaboxPrefix('Content', 'contentMetabox');
+
+    echo '<textarea class="form-control" name="content" rows="14">' . $content . '</textarea>';
+
+    metaboxSuffix();
+
+    metaboxPrefix('Excerpt', 'excerptMetabox');
+
+    echo '<textarea class="form-control" name="excerpt" rows="4">' . $excerpt . '</textarea>';
+
+    metaboxSuffix();
+
+    echo '</div>';
+
+    echo '<div class="col-md-4">';
+
+    displayAllMetaBoxes();
 
 
 // store all post meta-data into array!
@@ -72,9 +76,14 @@ echo "<pre>";
 print_r($arrayOfSelectedOptions);
 echo "</pre>";
 
-?>
 
-                <input class="btn btn-default" type="submit" value="Save">
+    metaboxPrefix('Save', 'publishMetabox');
+
+    echo '<input class="btn btn-default" type="submit" value="Save">';
+
+    metaboxSuffix();
+
+?>
 
             </form>
         </div>
