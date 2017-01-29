@@ -2,6 +2,8 @@
 
 $conn = new MongoClient('mongodb://localhost');
 $db = $conn->test;
-$collection = $db->posts;
+$postCollection = $db->posts;
+
+$userCollection = $db->users;
 
 ?>

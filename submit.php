@@ -6,9 +6,6 @@ require 'connection.php';
 
 if (!empty($_POST)) {
 
-    $posts = $collection->find();
-
-
     $title = $_POST['title'];
     $content = $_POST['content'];
     $excerpt = $_POST['excerpt'];
@@ -35,10 +32,10 @@ if (!empty($_POST)) {
         // UPDATE
         $id = $_POST['id'];
         $query = array('_id'=> new MongoId($id));
-        $collection->update($query,$post);
+        $postCollection->update($query, $post);
     } else {
         // INSERT
-        $collection->insert($post);
+        $postCollection->insert($post);
     }
 
 

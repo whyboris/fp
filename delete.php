@@ -6,7 +6,7 @@ if (!empty($_GET)) {
 
     $id = $_GET['id'];
     $query = array('_id'=> new MongoId($id));
-    $collection->remove($query);
+    $postCollection->remove($query);
 
 }
 

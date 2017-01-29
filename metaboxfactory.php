@@ -23,6 +23,7 @@ function displayAllMetaBoxes(){
 
     foreach ($allMetaBoxes as $key => $value) {
         metaboxPrefix($allMetaBoxes[$key][0],$allMetaBoxes[$key][1]);
+        // execute the function registered with its metabox
         $allMetaBoxes[$key][2]($allMetaBoxes[$key][1]);
         metaboxSuffix();
     }

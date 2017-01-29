@@ -27,7 +27,7 @@ include('header.php');
         $searchQuery = array('author'=>$_SESSION['name']);
     }
 
-    $articles = $collection->find($searchQuery);
+    $articles = $postCollection->find($searchQuery);
     $article_count = $articles->count();
 
     $tempCounter = 1;

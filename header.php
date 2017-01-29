@@ -55,7 +55,7 @@ if(!empty($_SESSION['name'])){
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $userName ?> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="usersettings.php">Profile</a></li>
                     <li><a href="#">Statistics</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="logout.php">Log out</a></li>
