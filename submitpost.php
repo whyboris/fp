@@ -25,9 +25,6 @@ if (!empty($_POST)) {
         $post[$current]= $_POST[$current];
     }
 
-
-
-
     if ($_POST['id'] != 0) {
         // UPDATE
         $id = $_POST['id'];
@@ -37,7 +34,6 @@ if (!empty($_POST)) {
         // INSERT
         $postCollection->insert($post);
     }
-
 
 }
 
