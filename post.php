@@ -31,7 +31,7 @@ if(!empty($_GET['id'])){
 
         <div class="col-md-offset-1 col-md-6">
 
-            <form class="bs-example bs-example-form" action="submit.php" method="post">
+            <form class="bs-example bs-example-form" action="submitpost.php" method="post">
 
                 <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
 

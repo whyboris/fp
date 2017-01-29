@@ -32,3 +32,12 @@ body {
     font-weight: normal;
     font-style: italic;
 }
+
+.navbar-default .navbar-brand {
+    color: #444;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #777;
+}
