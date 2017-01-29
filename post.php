@@ -29,37 +29,30 @@ if(!empty($_GET['id'])){
 
     <div class="row row-fluid">
 
-        <div class="col-md-8">
+        <div class="col-md-offset-1 col-md-6">
 
             <form class="bs-example bs-example-form" action="submit.php" method="post">
 
                 <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
 
 <?php
-    metaboxPrefix('Title', 'titleMetabox');
+metaboxPrefix('Title', 'titleMetabox');
+echo '<input type="text"  class="form-control" name="title" value="' . $title . '">';
+metaboxSuffix();
 
-    echo '<input type="text"  class="form-control" name="title" value="' . $title . '">';
+metaboxPrefix('Content', 'contentMetabox');
+echo '<textarea class="form-control" name="content" rows="14">' . $content . '</textarea>';
+metaboxSuffix();
 
-    metaboxSuffix();
+metaboxPrefix('Excerpt', 'excerptMetabox');
+echo '<textarea class="form-control" name="excerpt" rows="4">' . $excerpt . '</textarea>';
+metaboxSuffix();
 
-    metaboxPrefix('Content', 'contentMetabox');
+echo '</div>';
 
-    echo '<textarea class="form-control" name="content" rows="14">' . $content . '</textarea>';
+echo '<div class="col-md-4">';
 
-    metaboxSuffix();
-
-    metaboxPrefix('Excerpt', 'excerptMetabox');
-
-    echo '<textarea class="form-control" name="excerpt" rows="4">' . $excerpt . '</textarea>';
-
-    metaboxSuffix();
-
-    echo '</div>';
-
-    echo '<div class="col-md-4">';
-
-    displayAllMetaBoxes();
-
+displayAllMetaBoxes();
 
 // store all post meta-data into array!
 $arrayOfSelectedOptions = array();
@@ -71,17 +64,16 @@ foreach ($allMetaBoxes as $key => $value) {
     }
 }
 
+metaboxPrefix('Save', 'publishMetabox');
+echo "<p>Please don't forget to check spelling!</p>";
+echo '<div class="pull-right"><input class="btn btn-default" type="submit" value="Save"></div>';
+metaboxSuffix();
+
+
 echo "<div style='clear: both'>";
 echo "<pre>";
 print_r($arrayOfSelectedOptions);
 echo "</pre>";
-
-
-    metaboxPrefix('Save', 'publishMetabox');
-
-    echo '<input class="btn btn-default" type="submit" value="Save">';
-
-    metaboxSuffix();
 
 ?>
 

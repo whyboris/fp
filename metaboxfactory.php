@@ -34,7 +34,11 @@ function metaboxPrefix($displayName, $uniqueId) {
     echo '<div class="panel panel-default" id="' . $uniqueId . '">';
     //echo '<label for="' . $uniqueId . '">' . $displayName. '</label><br>';
     echo '<div class="panel-heading">' . $displayName;
-    echo '<div class="pull-right"><a href="#'. $uniqueId .'Panel" data-toggle="collapse" class="text-right btn btn-xs">&#x25BE;</a></div>';
+    // toggle icon div
+    //echo '<div class="pull-right"><a href="#'. $uniqueId .'Panel" data-toggle="collapse" class="text-right btn btn-xs">&#x25BE;</a></div>';
+
+    echo '<div class="pull-right"><span class="arrow-toggle" data-toggle="collapse" data-target="#'. $uniqueId .'Panel" id="collapseP"><span class="icon-arrow-down"><btn class="btn btn-default btn-circle">&uarr;</button></span><span class="icon-arrow-up"><btn class="btn btn-default btn-circle">&darr;</button></span></span></div>';
+
     echo '</div>';
     echo '<div id="'.$uniqueId.'Panel" class="panel-collapse collapse in">';
     echo '<div class="panel-body">';

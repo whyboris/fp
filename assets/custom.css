@@ -2,3 +2,22 @@ body {
     padding-top: 80px;
     background-image: url("/fp/assets/groovepaper.png");
 }
+
+.arrow-toggle .icon-arrow-down,
+.arrow-toggle.collapsed .icon-arrow-up {
+    display: inline-block;
+}
+.arrow-toggle.collapsed .icon-arrow-down,
+.arrow-toggle .icon-arrow-up {
+    display: none;
+}
+
+.btn-circle {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  padding: 3px 0;
+  font-size: 10px;
+  line-height: 1;
+  border-radius: 15px;
+}
