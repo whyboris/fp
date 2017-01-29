@@ -4,7 +4,7 @@ include('header.php');
 
 include('metaboxfactory.php');
 
-require 'connection.php';
+require('connection.php');
 
 // grab user's settings from database
 
@@ -42,17 +42,42 @@ function renderUserSetting($displayName, $fieldName, $value){
     echo '</div>';
 }
 
+include('usersettingscreation.php');
+
 metaboxPrefix('Personal', 'personalMetabox');
-renderUserSetting('First Name', 'name', $id);
-renderUserSetting('Last Name', 'lastName', $lastName);
+
+foreach ($allUserMeta as $key => $value) {
+    if ($value[2] == 1) {
+        renderUserSetting($value[0], $value[1], $userSettings[$value[1]]);
+    }
+}
+//renderUserSetting('First Name', 'name', $id);
+//renderUserSetting('Last Name', 'lastName', $lastName);
+//renderUserSetting('Twitter', 'twitter', $twitter);
+
 metaboxSuffix();
 
 metaboxPrefix('Professional', 'professionalMetabox');
-renderUserSetting('Contributor Type', 'type', $type);
-renderUserSetting('Salary', 'salary', $salary);
+
+foreach ($allUserMeta as $key => $value) {
+    if ($value[2] == 2) {
+        renderUserSetting($value[0], $value[1], $userSettings[$value[1]]);
+    }
+}
+
+//renderUserSetting('Contributor Type', 'type', $type);
+//renderUserSetting('Salary', 'salary', $salary);
+
 metaboxSuffix();
 
 echo '<div><input class="btn btn-default" type="submit" value="Save"></div>';
 
+//echo "<pre>";
+//print_r($userSettings);
+//echo "</pre>";
+
+//echo "<pre>";
+//print_r($allUserMeta);
+//echo "</pre>";
 
  ?>

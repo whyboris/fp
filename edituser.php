@@ -2,29 +2,32 @@
 
 session_start();
 
-require 'connection.php';
+require('connection.php');
+
+include('usersettingscreation.php');
 
 if (!empty($_POST)) {
 
-    $name = $_POST['name'];
-    $lastName = $_POST['lastName'];
-    $type = $_POST['type'];
-    $salary = $_POST['salary'];
+    //$name = $_POST['name'];
 
-    $post = array(
-        'name'=>$name,
-        'lastName'=>$lastName,
-        'type'=>$type,
-        'salary'=>$salary,
-    );
+    $insertionArray = array();
+
+    foreach($allUserMeta as $key => $value) {
+        $insertionArray[$value[1]] = $_POST[$value[1]];
+    }
 
     // update
     $id = $_POST['name'];
     $query = array('name'=> $id);
-    $userCollection->update($query, $post);
+    $userCollection->update($query, $insertionArray);
 
     // INSERT -- temporary until I create Register page
     //$userCollection->insert($post);
+
+    //echo "<pre>";
+    //print_r($allUserMeta);
+    //echo "<br><br><br>";
+    //print_r($insertionArray);
 
 }
 
