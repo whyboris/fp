@@ -27,3 +27,8 @@ body {
     border-color: #CCCCCC;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
 }
+
+.control-label {
+    font-weight: normal;
+    font-style: italic;
+}

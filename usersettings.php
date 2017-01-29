@@ -26,28 +26,31 @@ require 'connection.php';
 
         <div class="col-md-offset-1 col-md-6">
 
-            <form class="bs-example bs-example-form" action="edituser.php" method="post">
+            <form class="form-horizontal" action="edituser.php" method="post">
 
                 <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
 
 <?php
+
+function renderUserSetting($displayName, $fieldName, $value){
+    echo '<div class="form-group">';
+
+        echo '<label class="control-label col-sm-3" for="name">'.$displayName.'</label>';
+
+        echo '<div class="col-sm-9"><input type="text"  class="form-control" name="'.$fieldName.'" value="'.$value.'"></div>';
+
+    echo '</div>';
+}
+
 metaboxPrefix('Personal', 'personalMetabox');
-echo '<p>First Name</p>';
-echo '<input type="text"  class="form-control" name="name" value="'.$id.'" readonly>';
-echo '<br>';
-echo '<p>Last Name</p>';
-echo '<input type="text"  class="form-control" name="lastName" value="'.$lastName.'">';
+renderUserSetting('First Name', 'name', $id);
+renderUserSetting('Last Name', 'lastName', $lastName);
 metaboxSuffix();
 
 metaboxPrefix('Professional', 'professionalMetabox');
-echo '<p>Contributor Type</p>';
-echo '<input type="text"  class="form-control" name="type" value="'.$type.'">';
-echo '<br>';
-echo '<p>Salary</p>';
-echo '<input type="text"  class="form-control" name="salary" value="'.$salary.'">';
+renderUserSetting('Contributor Type', 'type', $type);
+renderUserSetting('Salary', 'salary', $salary);
 metaboxSuffix();
-
-
 
 echo '<div><input class="btn btn-default" type="submit" value="Save"></div>';
 
