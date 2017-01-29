@@ -14,10 +14,6 @@ require('connection.php');
     $query = array('name'=> $id);
     $userSettings = $userCollection->findOne($query);
 
-    $lastName = $userSettings['lastName'];
-    $type = $userSettings['type'];
-    $salary = $userSettings['salary'];
-
 ?>
 
 <div class="container-fluid">
@@ -26,7 +22,7 @@ require('connection.php');
 
         <div class="col-md-offset-1 col-md-6">
 
-            <form class="form-horizontal" action="edituser.php" method="post">
+            <form class="form-horizontal" action="updateuser.php" method="post">
 
                 <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
 
@@ -44,6 +40,15 @@ function renderUserSetting($displayName, $fieldName, $value){
 
 include('usersettingscreation.php');
 
+/**
+ * Render all the user settings
+ *
+ * Separates into groups
+ * @param  string   $groupDisplayName   Group name to display
+ * @param  string   $groupDivId         Div id for jQuery to grab (not needed yet)
+ * @param  string   $groupNumber        Render out only user meta for this group number
+ * @return void
+ */
 function displayUserSettingsGroup($groupDisplayName, $groupDivId, $groupNumber) {
 
     metaboxPrefix($groupDisplayName, $groupDivId);
@@ -51,6 +56,7 @@ function displayUserSettingsGroup($groupDisplayName, $groupDivId, $groupNumber) 
     global $allUserMeta;
     global $userSettings;
 
+    // cycle through all the registered user meta
     foreach ($allUserMeta as $key => $value) {
         if ($value[2] == $groupNumber) {
             if (isset($userSettings[$value[1]])){

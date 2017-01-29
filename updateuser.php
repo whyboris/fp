@@ -13,7 +13,9 @@ if (!empty($_POST)) {
     $insertionArray = array();
 
     foreach($allUserMeta as $key => $value) {
-        $insertionArray[$value[1]] = $_POST[$value[1]];
+        if (isset($_POST[$value[1]])) {
+            $insertionArray[$value[1]] = $_POST[$value[1]];
+        }
     }
 
     // update
@@ -31,4 +33,5 @@ if (!empty($_POST)) {
 
 }
 
-header('Location: index.php');
+//header('Location: index.php');
+header('Location: usersettings.php');
