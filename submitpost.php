@@ -29,7 +29,7 @@ if (!empty($_POST)) {
         // UPDATE
         $id = $_POST['id'];
         $query = array('_id'=> new MongoId($id));
-        $postCollection->update($query, $post);
+        $postCollection->update($query, array('$set' => $post));
     } else {
         // INSERT
         $postCollection->insert($post);
