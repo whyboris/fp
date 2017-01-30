@@ -11,7 +11,7 @@ if(!empty($_SESSION['name'])){
 
 <html>
 <head>
-    <title>Welcome to Forbes Press</title>
+    <title>Welcome to Mongo Press</title>
     <script src="assets/jquery.min.js"></script>
     <script src="assets/bootstrap.min.js"></script>
     <link href="assets/bootstrap.min.css" rel="stylesheet">
@@ -52,7 +52,7 @@ if(!empty($_SESSION['name'])){
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">Forbes Press</a>
+            <a class="navbar-brand" href="index.php">Mongo Press</a>
         </div>
 
         <ul class="nav navbar-nav navbar-right">

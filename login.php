@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Log in to Forbes Press</title>
+    <title>Log in to Mongo Press</title>
     <link href="assets/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>

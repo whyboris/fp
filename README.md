@@ -2,4 +2,8 @@
 
 Please ignore until I'm ready to share.
 
-Testing.
+## About
+
+- Testing MongoDB
+- Testing PHP
+- Experimenting
