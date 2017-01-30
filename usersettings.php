@@ -22,7 +22,7 @@ require('connection.php');
 
         <div class="col-md-offset-1 col-md-6">
 
-            <form class="form-horizontal" action="updateuser.php" method="post">
+            <form class="form-horizontal" action="userupdate.php" method="post">
 
                 <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
 
@@ -90,7 +90,7 @@ function renderUserSetting($displayName, $fieldName, $value, $optionsArray, $sel
     echo '</div>';
 }
 
-include('usersettingscreation.php');
+include('usersettingsfactory.php');
 
 /**
  * Render all the user settings
