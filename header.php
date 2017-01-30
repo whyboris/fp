@@ -28,7 +28,9 @@ if(!empty($_SESSION['name'])){
         $(document).ready(function() {
             $('#example').DataTable({
                 searching: false,
-                lengthChange: false
+                lengthChange: false,
+                paginate: false,
+                info: false
             });
         });
     </script>

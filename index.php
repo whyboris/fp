@@ -39,7 +39,7 @@ include('header.php');
     ?>
         <div class="container">
 
-        <table id="example" class="table table-striped table-bordered" >
+        <table id="example" class="table table-striped" >
             <thead>
                 <tr>
                     <th><center>#</center></th>
