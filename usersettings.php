@@ -69,9 +69,8 @@ function renderUserSetting($displayName, $fieldName, $value, $optionsArray, $sel
                 $selected = '';
 
                 $chosenValue = $value;
-
                 // chosen value can be an array!
-                if (isset($chosenValue)) {
+                if (isset($chosenValue) && $chosenValue != '') {
                     foreach ($chosenValue as $key2 => $value2) {
                         if ($key == $value2) {
                             $selected = 'checked';
@@ -131,12 +130,12 @@ displayUserSettingsGroup('Professional', 'professionalMetabox', 2);
 
 echo '<div><input class="btn btn-default" type="submit" value="Save"></div>';
 
-//echo "<pre>";
-//print_r($userSettings);
-//echo "</pre>";
+// echo "<pre>";
+// print_r($userSettings);
+// echo "</pre>";
 
-echo "<pre>";
-print_r($allUserMeta);
-echo "</pre>";
+// echo "<pre>";
+// print_r($allUserMeta);
+// echo "</pre>";
 
  ?>

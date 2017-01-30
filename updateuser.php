@@ -26,12 +26,12 @@ if (!empty($_POST)) {
     // INSERT -- temporary until I create Register page
     //$userCollection->insert($post);
 
-    echo "<pre>";
-    print_r($_POST);
-    echo "<br><br><br>";
-    print_r($insertionArray);
+    // echo "<pre>";
+    // print_r($_POST);
+    // echo "<br><br><br>";
+    // print_r($insertionArray);
 
 }
 
 //header('Location: index.php');
-//header('Location: usersettings.php');
+header('Location: usersettings.php');
