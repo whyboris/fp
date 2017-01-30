@@ -12,6 +12,10 @@ if (!empty($_POST)) {
 
     $insertionArray = array();
 
+    // echo "<pre>";
+    // print_r($allUserMeta);
+    // echo "<br><br><br>";
+
     foreach($allUserMeta as $key => $value) {
         if (isset($_POST[$value[1]]) && $_POST[$value[1]]!='') {
             $insertionArray[$value[1]] = $_POST[$value[1]];

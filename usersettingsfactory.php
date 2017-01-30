@@ -2,6 +2,37 @@
 
 $allUserMeta = array();
 
+$contribTypeArray = array(
+    'contributor' => 'Contributor',
+    'editor' => 'Editor',
+    'staff' => 'Staff',
+);
+
+$deptArray = array(
+    'dev' => 'Developers',
+    'art' => 'Art',
+    'editorial' => 'Editorial',
+);
+
+$privilegeArray = array(
+    'coffee' => 'Free coffee',
+    'icecream' => 'Free ice cream',
+    'cookies' => 'Free cookies',
+);
+
+// Register Fields for Group 1
+registerUserMeta('First Name', 'name', 1);
+registerUserMeta('Last Name', 'lastName', 1);
+registerUserMeta('Twitter', 'twitter', 1);
+registerUserMeta('Facebook', 'facebook', 1);
+registerUserMeta('Instagram', 'instagram', 1);
+
+// Register Fields for Group 2
+registerUserMeta('Contributor Type', 'type', 2, $contribTypeArray, 'dropdown');
+registerUserMeta('Salary', 'salary', 2);
+registerUserMeta('Department', 'department', 2, $deptArray, 'radio');
+registerUserMeta('Privileges', 'privilege', 2, $privilegeArray, 'checkboxes');
+
 /**
  * Register user meta field -- if no $selectionType set, defaults to text field
  * @param  string   $displayName    Name of field shown to user
@@ -16,6 +47,15 @@ function registerUserMeta($displayName, $fieldName, $groupId = 1, $optionsArray 
     array_push($allUserMeta, array($displayName, $fieldName, $groupId, $optionsArray, $selectionType));
 }
 
+/**
+ * Render User Settings
+ * @param  string   $displayName    [description]
+ * @param  string   $fieldName      [description]
+ * @param  mixed    $value          current value stored in a databse (string or array)
+ * @param  array    $optionsArray   OPTIONAL -- array containing options for user
+ * @param  string   $selectionType  can be 'dropdown', 'radio', or 'checkboxes'
+ * @return void
+ */
 function renderUserSetting($displayName, $fieldName, $value, $optionsArray, $selectionType){
     echo '<div class="form-group">';
 
