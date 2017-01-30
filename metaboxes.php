@@ -1,6 +1,6 @@
 <?php
 
-include('arrays.php');
+include('postarrays.php');
 include('metaboxfactory.php');
 
 function bestPartOfDay($uniqueId) {
