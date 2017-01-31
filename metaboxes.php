@@ -6,17 +6,17 @@ include('metaboxfactory.php');
 function bestPartOfDay($uniqueId) {
     createRadioButtons(getPartsOfDay(), $uniqueId);
 }
-registerMetaBox('What is your favorite part of the day?', 'timeOfDay', 'bestPartOfDay', 2);
+registerMetaBox('Post type', 'timeOfDay', 'bestPartOfDay', 2);
 
 function faveFlavors($uniqueId) {
     createCheckBoxes(getFaveFlavors(), $uniqueId);
 }
-registerMetaBox('Which flavor(s) do you like?', 'flavors', 'faveFlavors', 4);
+registerMetaBox('Categories', 'flavors', 'faveFlavors', 4);
 
 function aDropDown($uniqueId) {
     createDropDown(getCarTypes(), $uniqueId);
 }
-registerMetaBox('What is the best car?', 'bestCar', 'aDropDown', 6);
+registerMetaBox('Hashtag', 'bestCar', 'aDropDown', 6);
 
 // DISABLED ONES
 
