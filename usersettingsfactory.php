@@ -67,18 +67,9 @@ function renderUserSetting($displayName, $fieldName, $dbValue, $optionsArray, $s
         if ($selectionType === null) {
             echo '<input type="text"  class="form-control" name="'.$fieldName.'" value="'.$dbValue.'">';
         } elseif ($selectionType == 'dropdown') {
-            // MOVE TO renderDropdown() below!
-            echo '<div class="selectpicker">';
-            echo '<select class="form-control" name="'. $fieldName . '">';
-            foreach ($optionsArray as $key => $value2) {
-                $selected = '';
-                if ($dbValue == $key) {
-                    $selected = 'selected';
-                }
-                echo '<option value="'.$key.'" '.$selected.'>'.$value2.'</option>';
-            }
-            echo '</select>';
-            echo '</div>';
+
+            renderDropdown($optionsArray, $fieldName, $dbValue);
+            
         } elseif ($selectionType == 'radio') {
             foreach ($optionsArray as $key => $value2) {
 
@@ -119,8 +110,18 @@ function renderUserSetting($displayName, $fieldName, $dbValue, $optionsArray, $s
 }
 
 
-function renderDropdown() {
-
+function renderDropdown($optionsArray, $fieldName, $dbValue) {
+    echo '<div class="selectpicker">';
+    echo '<select class="form-control" name="'. $fieldName . '">';
+    foreach ($optionsArray as $key => $value2) {
+        $selected = '';
+        if ($dbValue == $key) {
+            $selected = 'selected';
+        }
+        echo '<option value="'.$key.'" '.$selected.'>'.$value2.'</option>';
+    }
+    echo '</select>';
+    echo '</div>';
 }
 
 

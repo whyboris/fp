@@ -16,7 +16,7 @@ registerMetaBox('Categories', 'flavors', 'faveFlavors', 4);
 function aDropDown($uniqueId) {
     createDropDown(getCarTypes(), $uniqueId);
 }
-registerMetaBox('Hashtag', 'bestCar', 'aDropDown', 6);
+registerMetaBox('Hashtags', 'bestCar', 'aDropDown', 6);
 
 // DISABLED ONES
 

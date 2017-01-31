@@ -76,78 +76,8 @@ function fpGetMetaValue($uniqueId) {
     }
 }
 
-/**
- * Creaet Radio Buttons
- */
-
-function createRadioButtons($array, $uniqueId) {
-
-    $chosenValue = fpGetMetaValue($uniqueId);
-
-    foreach ($array as $key => $value) {
-
-        $selected = '';
-        if ($chosenValue == $key) {
-            $selected = 'checked';
-        }
-
-        echo '<div class="radio">';
-        echo '<label><input type="radio" name="' . $uniqueId . '" value="' . $key . '" '.$selected.'>' . $value . '</label>';
-        echo '</div>';
-    }
-
-}
-
-/**
- * Creaet Dropdown
- */
-
-function createDropDown($array, $uniqueId) {
-
-    $chosenValue = fpGetMetavalue($uniqueId);
-
-    echo '<div class="selectpicker">';
-    echo '<select class="form-control" name="'. $uniqueId . '">';
-
-    foreach ($array as $key => $value) {
-        $selected = '';
-        if ($chosenValue == $key) {
-            $selected = 'selected';
-        }
-        echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
-    }
-    echo '</select>';
-    echo '</div>';
-
-}
+include('renderelements.php');
 
 
-/**
- * Create check boxes
- */
-
-function createCheckBoxes($array, $uniqueId) {
-
-    $chosenValue = fpGetMetaValue($uniqueId);
-
-    foreach ($array as $key => $value) {
-
-        $selected = '';
-
-        // chosen value can be an array!
-        if (isset($chosenValue)) {
-            foreach ($chosenValue as $key2 => $value2) {
-                if ($key == $value2) {
-                    $selected = 'checked';
-                }
-            }
-        }
-
-        echo '<div class="checkbox">';
-        echo '<label><input type="checkbox" name="' . $uniqueId . '[]" value="'. $key . '" '.$selected.'>' . $value . '</label>';
-        echo '</div>';
-    }
-
-}
 
 ?>
