@@ -76,7 +76,7 @@ function fpGetMetaValue($uniqueId) {
     }
 }
 
-include('renderelements.php');
+include_once('renderelements.php');
 
 
 

@@ -80,55 +80,7 @@ function renderUserSetting($displayName, $fieldName, $dbValue, $optionsArray, $s
     echo '</div>';
 }
 
-
-function renderDropdown($optionsArray, $fieldName, $dbValue) {
-    echo '<div class="selectpicker">';
-    echo '<select class="form-control" name="'. $fieldName . '">';
-    foreach ($optionsArray as $key => $value2) {
-        $selected = '';
-        if ($dbValue == $key) {
-            $selected = 'selected';
-        }
-        echo '<option value="'.$key.'" '.$selected.'>'.$value2.'</option>';
-    }
-    echo '</select>';
-    echo '</div>';
-}
-
-function renderRadioButtons($optionsArray, $fieldName, $dbValue) {
-    foreach ($optionsArray as $key => $value2) {
-
-        $selected = '';
-        if ($dbValue == $key) {
-            $selected = 'checked';
-        }
-
-        echo '<div class="radio">';
-        echo '<label><input type="radio" name="' . $fieldName . '" value="' . $key . '" '.$selected.'>' . $value2 . '</label>';
-        echo '</div>';
-    }
-}
-
-function renderCheckboxes($optionsArray, $fieldName, $dbValue) {
-
-    foreach ($optionsArray as $key => $value3) {
-
-        $selected = '';
-
-        // chosen value can be an array!
-        if (isset($dbValue) && $dbValue != '') {
-            foreach ($dbValue as $key2 => $value2) {
-                if ($key == $value2) {
-                    $selected = 'checked';
-                }
-            }
-        }
-
-        echo '<div class="checkbox">';
-        echo '<label><input type="checkbox" name="' . $fieldName . '[]" value="'. $key . '" '.$selected.'>' . $value3 . '</label>';
-        echo '</div>';
-    }
-}
+include_once('renderelements.php');
 
 /**
  * Render all the user settings

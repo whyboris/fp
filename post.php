@@ -103,7 +103,7 @@ echo "</pre>";
       <div class="modal-body">
 <?php
 
-include('renderelements.php');
+include_once('renderelements.php');
 
 $screenOptions = array();
 
