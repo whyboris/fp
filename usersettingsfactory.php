@@ -51,12 +51,12 @@ function registerUserMeta($displayName, $fieldName, $groupId = 1, $optionsArray 
  * Render User Settings
  * @param  string   $displayName    [description]
  * @param  string   $fieldName      [description]
- * @param  mixed    $value          current value stored in a databse (string or array)
+ * @param  mixed    $dbValue          current value stored in a databse (string or array)
  * @param  array    $optionsArray   OPTIONAL -- array containing options for user
  * @param  string   $selectionType  can be 'dropdown', 'radio', or 'checkboxes'
  * @return void
  */
-function renderUserSetting($displayName, $fieldName, $value, $optionsArray, $selectionType){
+function renderUserSetting($displayName, $fieldName, $dbValue, $optionsArray, $selectionType){
     echo '<div class="form-group">';
 
         echo '<label class="control-label col-sm-3" for="name">'.$displayName.'</label>';
@@ -65,13 +65,14 @@ function renderUserSetting($displayName, $fieldName, $value, $optionsArray, $sel
 
         // convert to SWITCH / CASE
         if ($selectionType === null) {
-            echo '<input type="text"  class="form-control" name="'.$fieldName.'" value="'.$value.'">';
+            echo '<input type="text"  class="form-control" name="'.$fieldName.'" value="'.$dbValue.'">';
         } elseif ($selectionType == 'dropdown') {
+            // MOVE TO renderDropdown() below!
             echo '<div class="selectpicker">';
             echo '<select class="form-control" name="'. $fieldName . '">';
             foreach ($optionsArray as $key => $value2) {
                 $selected = '';
-                if ($value == $key) {
+                if ($dbValue == $key) {
                     $selected = 'selected';
                 }
                 echo '<option value="'.$key.'" '.$selected.'>'.$value2.'</option>';
@@ -82,7 +83,7 @@ function renderUserSetting($displayName, $fieldName, $value, $optionsArray, $sel
             foreach ($optionsArray as $key => $value2) {
 
                 $selected = '';
-                if ($value == $key) {
+                if ($dbValue == $key) {
                     $selected = 'checked';
                 }
 
@@ -96,10 +97,9 @@ function renderUserSetting($displayName, $fieldName, $value, $optionsArray, $sel
 
                 $selected = '';
 
-                $chosenValue = $value;
                 // chosen value can be an array!
-                if (isset($chosenValue) && $chosenValue != '') {
-                    foreach ($chosenValue as $key2 => $value2) {
+                if (isset($dbValue) && $dbValue != '') {
+                    foreach ($dbValue as $key2 => $value2) {
                         if ($key == $value2) {
                             $selected = 'checked';
                         }
@@ -116,6 +116,11 @@ function renderUserSetting($displayName, $fieldName, $value, $optionsArray, $sel
         echo '</div>';
 
     echo '</div>';
+}
+
+
+function renderDropdown() {
+
 }
 
 

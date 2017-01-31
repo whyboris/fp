@@ -6,13 +6,14 @@
 <body>
 
 
-<div class="row">
-    <div class="container center_div">
+<div class="row" style="padding-top: 100px">
+    <div class="col-md-offset-4 col-md-2">
         <div class="form-group">
-            <form class="bs-example bs-example-form" action="session.php" method="post">
+            <form class="" action="session.php" method="post">
 
                 <label for="login">First Name:</label>
                 <input type="text"  class="form-control" name="name" value="">
+                <br>
                 <input class="btn btn-default" type="submit" value="Log In">
 
             </form>
