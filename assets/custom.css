@@ -41,7 +41,3 @@ body {
 .navbar-default .navbar-brand:focus {
     color: #777;
 }
-
-.modal-narrow {
-    width: 300px;
-}

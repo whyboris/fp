@@ -24,13 +24,13 @@ if(!empty($_GET['id'])){
 }
 
 ?>
-<!-- Button trigger modal -->
 <div class="container-fluid">
 
     <div class="row row-fluid">
 
         <div class="col-md-offset-1 col-md-6">
 
+            <!-- Button to trigger modal -->
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
                 Screen Options
             </button>
