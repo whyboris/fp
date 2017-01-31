@@ -30,7 +30,7 @@ function createRadioButtons($array, $uniqueId) {
 }
 
 /**
- * Creaet Dropdown
+ * Create Dropdown
  */
 
 function createDropDown($array, $uniqueId) {
@@ -86,11 +86,18 @@ function createCheckBoxes($array, $uniqueId) {
 // from USER SETTINGS FACTORY
 // --------------------------------------
 
+function fpGetUserMeta($fieldName) {
+    global $userSettings;
+    return $userSettings[$fieldName];
+}
 
+function renderDropdown($optionsArray, $fieldName) {
 
-function renderDropdown($optionsArray, $fieldName, $dbValue) {
+    $dbValue = fpGetUserMeta($fieldName);
+
     echo '<div class="selectpicker">';
     echo '<select class="form-control" name="'. $fieldName . '">';
+
     foreach ($optionsArray as $key => $value2) {
         $selected = '';
         if ($dbValue == $key) {
@@ -102,7 +109,10 @@ function renderDropdown($optionsArray, $fieldName, $dbValue) {
     echo '</div>';
 }
 
-function renderRadioButtons($optionsArray, $fieldName, $dbValue) {
+function renderRadioButtons($optionsArray, $fieldName) {
+
+    $dbValue = fpGetUserMeta($fieldName);
+
     foreach ($optionsArray as $key => $value2) {
 
         $selected = '';
@@ -116,7 +126,9 @@ function renderRadioButtons($optionsArray, $fieldName, $dbValue) {
     }
 }
 
-function renderCheckboxes($optionsArray, $fieldName, $dbValue) {
+function renderCheckboxes($optionsArray, $fieldName) {
+
+    $dbValue = fpGetUserMeta($fieldName);
 
     foreach ($optionsArray as $key => $value3) {
 

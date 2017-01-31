@@ -67,11 +67,11 @@ function renderUserSetting($displayName, $fieldName, $dbValue, $optionsArray, $s
         if ($selectionType === null) {
             echo '<input type="text"  class="form-control" name="'.$fieldName.'" value="'.$dbValue.'">';
         } elseif ($selectionType == 'dropdown') {
-            renderDropdown($optionsArray, $fieldName, $dbValue);
+            renderDropdown($optionsArray, $fieldName);
         } elseif ($selectionType == 'radio') {
-            renderRadioButtons($optionsArray, $fieldName, $dbValue);
+            renderRadioButtons($optionsArray, $fieldName);
         } elseif ($selectionType == 'checkboxes') {
-            renderCheckboxes($optionsArray, $fieldName, $dbValue);
+            renderCheckboxes($optionsArray, $fieldName);
         }
 
 
