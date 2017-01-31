@@ -7,6 +7,13 @@ if(!empty($_SESSION['name'])){
 } else {
     header('Location: login.php');
 }
+
+function showMe($var){
+    echo "<pre>";
+    print_r($var);
+    echo "</pre>";
+}
+
 ?>
 
 <html>

@@ -23,6 +23,16 @@ if(!empty($_GET['id'])){
 
 }
 
+// store all post meta-data into array!
+$arrayOfSelectedOptions = array();
+foreach ($allMetaBoxes as $key => $value) {
+    $fieldName = $allMetaBoxes[$key][1];
+    if (isset($post[$fieldName])) {
+        $fieldValue = $post[$fieldName];
+        $arrayOfSelectedOptions[$fieldName] = $fieldValue;
+    }
+}
+
 ?>
 <div class="container-fluid">
 
@@ -42,6 +52,9 @@ if(!empty($_GET['id'])){
                 <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
 
 <?php
+
+// Default must-show fields:
+
 metaboxPrefix('Title', 'titleMetabox');
 echo '<input type="text"  class="form-control" name="title" value="' . $title . '">';
 metaboxSuffix();
@@ -56,19 +69,11 @@ metaboxSuffix();
 
 echo '</div>';
 
+// Right-side meta-boxes
+
 echo '<div class="col-md-4">';
 
 displayAllMetaBoxes();
-
-// store all post meta-data into array!
-$arrayOfSelectedOptions = array();
-foreach ($allMetaBoxes as $key => $value) {
-    $fieldName = $allMetaBoxes[$key][1];
-    if (isset($post[$fieldName])) {
-        $fieldValue = $post[$fieldName];
-        $arrayOfSelectedOptions[$fieldName] = $fieldValue;
-    }
-}
 
 metaboxPrefix('Save', 'publishMetabox');
 echo "<p>Please don't forget to check spelling!</p>";
@@ -76,10 +81,8 @@ echo '<div class="pull-right"><input class="btn btn-default" type="submit" value
 metaboxSuffix();
 
 
-echo "<div style='clear: both'>";
-echo "<pre>";
-print_r($arrayOfSelectedOptions);
-echo "</pre>";
+//showMe($arrayOfSelectedOptions);
+
 
 ?>
 
@@ -103,7 +106,7 @@ echo "</pre>";
       <div class="modal-body">
 <?php
 
-include('renderelements.php');
+include_once('renderelements.php');
 
 $screenOptions = array();
 
@@ -115,9 +118,7 @@ echo "<div id='allOptions'>";
 renderScreenOptionsCheckBoxes($screenOptions, $screenOptions, 'screenOptions');
 echo "</div>";
 
-// echo "<pre>";
-// print_r($screenOptions);
-// echo "</pre>";
+// showMe($screenOptions);
 
 ?>
       </div>

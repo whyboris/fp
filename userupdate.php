@@ -12,9 +12,7 @@ if (!empty($_POST)) {
 
     $insertionArray = array();
 
-    // echo "<pre>";
-    // print_r($allUserMeta);
-    // echo "<br><br><br>";
+    // showMe($allUserMeta);
 
     foreach($allUserMeta as $key => $value) {
         if (isset($_POST[$value[1]]) && $_POST[$value[1]]!='') {
@@ -30,10 +28,9 @@ if (!empty($_POST)) {
     // INSERT -- temporary until I create Register page
     //$userCollection->insert($post);
 
-    // echo "<pre>";
-    // print_r($_POST);
-    // echo "<br><br><br>";
-    // print_r($insertionArray);
+    // showMe($_POST);
+
+    // showMe($insertionArray);
 
 }
 

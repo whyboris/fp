@@ -16,7 +16,7 @@ registerMetaBox('Categories', 'flavors', 'faveFlavors', 4);
 function aDropDown($uniqueId) {
     createDropDown(getCarTypes(), $uniqueId);
 }
-registerMetaBox('Hashtag', 'bestCar', 'aDropDown', 6);
+registerMetaBox('Hashtags', 'bestCar', 'aDropDown', 6);
 
 // DISABLED ONES
 
@@ -30,8 +30,6 @@ function favoriteDrink($uniqueId) {
 }
 //registerMetaBox('What is your favoriet drink?', 'faveDrink', 'favoriteDrink', 10);
 
-//echo "</center><pre>";
-//print_r($allMetaBoxes);
-//echo "</pre>";
+// showMe($allMetaBoxes);
 
 ?>

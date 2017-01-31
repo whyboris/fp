@@ -63,66 +63,27 @@ function renderUserSetting($displayName, $fieldName, $dbValue, $optionsArray, $s
 
         echo '<div class="col-sm-9">';
 
-        // convert to SWITCH / CASE
-        if ($selectionType === null) {
-            echo '<input type="text"  class="form-control" name="'.$fieldName.'" value="'.$dbValue.'">';
-        } elseif ($selectionType == 'dropdown') {
-            // MOVE TO renderDropdown() below!
-            echo '<div class="selectpicker">';
-            echo '<select class="form-control" name="'. $fieldName . '">';
-            foreach ($optionsArray as $key => $value2) {
-                $selected = '';
-                if ($dbValue == $key) {
-                    $selected = 'selected';
-                }
-                echo '<option value="'.$key.'" '.$selected.'>'.$value2.'</option>';
-            }
-            echo '</select>';
-            echo '</div>';
-        } elseif ($selectionType == 'radio') {
-            foreach ($optionsArray as $key => $value2) {
-
-                $selected = '';
-                if ($dbValue == $key) {
-                    $selected = 'checked';
-                }
-
-                echo '<div class="radio">';
-                echo '<label><input type="radio" name="' . $fieldName . '" value="' . $key . '" '.$selected.'>' . $value2 . '</label>';
-                echo '</div>';
-            }
-        } elseif ($selectionType == 'checkboxes') {
-
-            foreach ($optionsArray as $key => $value3) {
-
-                $selected = '';
-
-                // chosen value can be an array!
-                if (isset($dbValue) && $dbValue != '') {
-                    foreach ($dbValue as $key2 => $value2) {
-                        if ($key == $value2) {
-                            $selected = 'checked';
-                        }
-                    }
-                }
-
-                echo '<div class="checkbox">';
-                echo '<label><input type="checkbox" name="' . $fieldName . '[]" value="'. $key . '" '.$selected.'>' . $value3 . '</label>';
-                echo '</div>';
-            }
+        switch ($selectionType) {
+            case null:
+                echo '<input type="text"  class="form-control" name="'.$fieldName.'" value="'.$dbValue.'">';
+                break;
+            case 'dropdown':
+                renderDropdown($optionsArray, $fieldName);
+                break;
+            case 'radio':
+                renderRadioButtons($optionsArray, $fieldName);
+                break;
+            case 'checkboxes':
+                renderCheckboxes($optionsArray, $fieldName);
+                break;
         }
-
 
         echo '</div>';
 
     echo '</div>';
 }
 
-
-function renderDropdown() {
-
-}
-
+include_once('renderelements.php');
 
 /**
  * Render all the user settings
