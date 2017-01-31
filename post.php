@@ -24,12 +24,18 @@ if(!empty($_GET['id'])){
 }
 
 ?>
-
 <div class="container-fluid">
 
     <div class="row row-fluid">
 
         <div class="col-md-offset-1 col-md-6">
+
+            <!-- Button to trigger modal -->
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                Screen Options
+            </button>
+
+            <br><br>
 
             <form class="bs-example bs-example-form" action="postsubmit.php" method="post">
 
@@ -82,4 +88,39 @@ echo "</pre>";
     </div>
 </div>
 
-</center>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h5 class="modal-title" id="myModalLabel">Screen Options</h5>
+      </div>
+      <div class="modal-body">
+<?php
+
+include('renderelements.php');
+
+$screenOptions = array();
+
+foreach($allMetaBoxes as $key => $value) {
+    $screenOptions[$value[1]] =  $value[0];
+}
+
+echo "<div id='allOptions'>";
+renderScreenOptionsCheckBoxes($screenOptions, $screenOptions, 'screenOptions');
+echo "</div>";
+
+// echo "<pre>";
+// print_r($screenOptions);
+// echo "</pre>";
+
+?>
+      </div>
+    </div>
+  </div>
+</div>
