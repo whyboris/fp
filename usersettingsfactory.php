@@ -63,17 +63,20 @@ function renderUserSetting($displayName, $fieldName, $dbValue, $optionsArray, $s
 
         echo '<div class="col-sm-9">';
 
-        // convert to SWITCH / CASE
-        if ($selectionType === null) {
-            echo '<input type="text"  class="form-control" name="'.$fieldName.'" value="'.$dbValue.'">';
-        } elseif ($selectionType == 'dropdown') {
-            renderDropdown($optionsArray, $fieldName);
-        } elseif ($selectionType == 'radio') {
-            renderRadioButtons($optionsArray, $fieldName);
-        } elseif ($selectionType == 'checkboxes') {
-            renderCheckboxes($optionsArray, $fieldName);
+        switch ($selectionType) {
+            case null:
+                echo '<input type="text"  class="form-control" name="'.$fieldName.'" value="'.$dbValue.'">';
+                break;
+            case 'dropdown':
+                renderDropdown($optionsArray, $fieldName);
+                break;
+            case 'radio':
+                renderRadioButtons($optionsArray, $fieldName);
+                break;
+            case 'checkboxes':
+                renderCheckboxes($optionsArray, $fieldName);
+                break;
         }
-
 
         echo '</div>';
 
