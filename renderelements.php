@@ -13,7 +13,7 @@
 
 function createRadioButtons($array, $uniqueId) {
 
-    $chosenValue = fpGetMetaValue($uniqueId);
+    $chosenValue = fpGetPostMeta($uniqueId);
 
     foreach ($array as $key => $value) {
 
@@ -35,7 +35,7 @@ function createRadioButtons($array, $uniqueId) {
 
 function createDropDown($array, $uniqueId) {
 
-    $chosenValue = fpGetMetavalue($uniqueId);
+    $chosenValue = fpGetPostMeta($uniqueId);
 
     echo '<div class="selectpicker">';
     echo '<select class="form-control" name="'. $uniqueId . '">';
@@ -59,7 +59,7 @@ function createDropDown($array, $uniqueId) {
 
 function createCheckBoxes($array, $uniqueId) {
 
-    $chosenValue = fpGetMetaValue($uniqueId);
+    $chosenValue = fpGetPostMeta($uniqueId);
 
     foreach ($array as $key => $value) {
 
@@ -88,7 +88,11 @@ function createCheckBoxes($array, $uniqueId) {
 
 function fpGetUserMeta($fieldName) {
     global $userSettings;
-    return $userSettings[$fieldName];
+    if (isset($userSettings[$fieldName])) {
+        return $userSettings[$fieldName];
+    } else {
+        return null;
+    }
 }
 
 function renderDropdown($optionsArray, $fieldName) {

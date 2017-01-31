@@ -58,7 +58,6 @@ echo '</div>';
 
 echo '<div class="col-md-4">';
 
-displayAllMetaBoxes();
 
 // store all post meta-data into array!
 $arrayOfSelectedOptions = array();
@@ -69,6 +68,8 @@ foreach ($allMetaBoxes as $key => $value) {
         $arrayOfSelectedOptions[$fieldName] = $fieldValue;
     }
 }
+
+displayAllMetaBoxes();
 
 metaboxPrefix('Save', 'publishMetabox');
 echo "<p>Please don't forget to check spelling!</p>";

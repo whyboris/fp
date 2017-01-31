@@ -4,6 +4,7 @@
 $allMetaBoxes = array();
 
 // Register meta boxes
+// stores all that was registered into an array for later retrieval
 function registerMetaBox($displayName, $uniqueId, $functionToCall, $order = 5) {
     global $allMetaBoxes;
     array_push($allMetaBoxes, array($displayName, $uniqueId, $functionToCall, $order));
@@ -59,21 +60,30 @@ function metaboxSuffix() {
  * @param  string           $uniqueId       identifies the key containing stored values
  * @return string/array                     string or array containing stored values
  */
-function fpGetMetaValue($uniqueId) {
-    global $allMetaBoxes;
+function fpGetPostMeta($uniqueId) {
 
-    global $post;
+    global $arrayOfSelectedOptions;
 
-    foreach ($allMetaBoxes as $key => $value) {
-        if ($allMetaBoxes[$key][1] == $uniqueId) {
-            //echo $allMetaBoxes[$key][1];
-            $fieldName = $allMetaBoxes[$key][1];
-            // sometimes the value hasn't yet been saved
-            if (isset($post[$fieldName])){
-                return $post[$fieldName];
-            }
-        }
+    if (isset($arrayOfSelectedOptions[$uniqueId])) {
+        return $arrayOfSelectedOptions[$uniqueId];
+    } else {
+        return null;
     }
+
+    // global $allMetaBoxes;
+    //
+    // global $post;
+    //
+    // foreach ($allMetaBoxes as $key => $value) {
+    //     if ($allMetaBoxes[$key][1] == $uniqueId) {
+    //         //echo $allMetaBoxes[$key][1];
+    //         $fieldName = $allMetaBoxes[$key][1];
+    //         // sometimes the value hasn't yet been saved
+    //         if (isset($post[$fieldName])){
+    //             return $post[$fieldName];
+    //         }
+    //     }
+    // }
 }
 
 include_once('renderelements.php');
