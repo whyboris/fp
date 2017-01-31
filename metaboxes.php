@@ -30,8 +30,6 @@ function favoriteDrink($uniqueId) {
 }
 //registerMetaBox('What is your favoriet drink?', 'faveDrink', 'favoriteDrink', 10);
 
-//echo "</center><pre>";
-//print_r($allMetaBoxes);
-//echo "</pre>";
+// showMe($allMetaBoxes);
 
 ?>

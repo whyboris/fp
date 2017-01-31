@@ -53,38 +53,6 @@ function metaboxSuffix() {
     echo '</div>';
 }
 
-/**
- * Retrieves stored values
- *
- * used in each metabox to retrieve saved values
- * @param  string           $uniqueId       identifies the key containing stored values
- * @return string/array                     string or array containing stored values
- */
-function fpGetPostMeta($uniqueId) {
-
-    global $arrayOfSelectedOptions;
-
-    if (isset($arrayOfSelectedOptions[$uniqueId])) {
-        return $arrayOfSelectedOptions[$uniqueId];
-    } else {
-        return null;
-    }
-
-    // global $allMetaBoxes;
-    //
-    // global $post;
-    //
-    // foreach ($allMetaBoxes as $key => $value) {
-    //     if ($allMetaBoxes[$key][1] == $uniqueId) {
-    //         //echo $allMetaBoxes[$key][1];
-    //         $fieldName = $allMetaBoxes[$key][1];
-    //         // sometimes the value hasn't yet been saved
-    //         if (isset($post[$fieldName])){
-    //             return $post[$fieldName];
-    //         }
-    //     }
-    // }
-}
 
 include_once('renderelements.php');
 

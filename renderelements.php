@@ -8,6 +8,25 @@
 // --------------------------------------
 
 /**
+ * Retrieves post meta values from DB
+ *
+ * used in each metabox to retrieve saved values
+ * @param  string           $uniqueId       identifies the key containing stored values
+ * @return string/array                     string or array containing stored values
+ */
+function fpGetPostMeta($uniqueId) {
+
+    global $arrayOfSelectedOptions;
+
+    if (isset($arrayOfSelectedOptions[$uniqueId])) {
+        return $arrayOfSelectedOptions[$uniqueId];
+    } else {
+        return null;
+    }
+
+}
+
+/**
  * Create Radio Buttons
  */
 
@@ -158,9 +177,7 @@ function renderCheckboxes($optionsArray, $fieldName) {
 // dbSavedAarray will be implemented later
 function renderScreenOptionsCheckBoxes($optionsArray, $dbSavedArray, $fieldName) {
 
-    // echo "<pre>";
-    // print_r($dbSavedArray);
-    // echo "</pre>";
+    // showMe($dbSavedArray);
 
     foreach ($optionsArray as $key => $displayName) {
 

@@ -39,12 +39,9 @@ displayUserSettingsGroup('Professional', 'professionalMetabox', 2);
 
 echo '<div><input class="btn btn-default" type="submit" value="Save"></div>';
 
-// echo "<pre>";
-// print_r($userSettings);
-// echo "</pre>";
-//
-// echo "<pre>";
-// print_r($allUserMeta);
-// echo "</pre>";
+// showMe($userSettings);
+
+// showMe($allUserMeta);
+
 
  ?>
