@@ -23,7 +23,7 @@ if (!empty($_POST)) {
     // update
     $id = $_POST['name'];
     $query = array('name'=> $id);
-    $userCollection->update($query, array('$set' => $insertionArray));
+    $blogCollection->update($query, array('$set' => $insertionArray));
 
     // INSERT -- temporary until I create Register page
     //$userCollection->insert($query);
@@ -35,4 +35,4 @@ if (!empty($_POST)) {
 }
 
 //header('Location: index.php');
-header('Location: usersettings.php');
+header('Location: blogsettings.php');

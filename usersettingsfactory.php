@@ -33,6 +33,12 @@ registerUserMeta('Salary', 'salary', 2);
 registerUserMeta('Department', 'department', 2, $deptArray, 'radio');
 registerUserMeta('Privileges', 'privilege', 2, $privilegeArray, 'checkboxes');
 
+// for BLOG SETTINGS
+registerUserMeta('DO NOT CHANGE', 'name', 3);
+registerUserMeta('Category', 'category', 3);
+registerUserMeta('Subtitle', 'subtitle', 3);
+registerUserMeta('Primary Author', 'primaryAuthor', 3);
+
 /**
  * Register user meta field -- if no $selectionType set, defaults to text field
  * @param  string   $displayName    Name of field shown to user
