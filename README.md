@@ -1,9 +1,14 @@
-# TEMP WIP
+# Mongo Press
 
-Please ignore until I'm ready to share.
+*This is a work in progress* This project mimics the WordPress administrative panel, saving data to MongoDB.
 
 ## About
 
-- Testing MongoDB
-- Testing PHP
-- Experimenting
+*This is a work in progress* learning experience in building a simplified version of WordPress administrative panel for posting articles, editing user meta, and (coming soon) blog meta.
+
+## Features
+
+Create field, dropdown, radio, or checkboxes easily:
+
+- One-line creation of user settings
+- Two-line creation of metaboxes

@@ -74,13 +74,13 @@ function renderUserSetting($displayName, $fieldName, $dbValue, $optionsArray, $s
                 echo '<input type="text"  class="form-control" name="'.$fieldName.'" value="'.$dbValue.'">';
                 break;
             case 'dropdown':
-                renderDropdown($optionsArray, $fieldName);
+                renderDropdown($optionsArray, $fieldName, 'user');
                 break;
             case 'radio':
-                renderRadioButtons($optionsArray, $fieldName);
+                renderRadioButtons($optionsArray, $fieldName, 'user');
                 break;
             case 'checkboxes':
-                renderCheckboxes($optionsArray, $fieldName);
+                renderCheckboxes($optionsArray, $fieldName, 'user');
                 break;
         }
 
