@@ -1,140 +1,55 @@
 <?php
 
-// functions to render elements: dropdowns, radio, & checkboxes
-
-
-// --------------------------------------
-// from METABOX FACTORY
-// --------------------------------------
-
 /**
  * Retrieves post meta values from DB
  *
  * used in each metabox to retrieve saved values
  * @param  string           $uniqueId       identifies the key containing stored values
+ * @param  string           $forWhatPage    either "user" or "post"
  * @return string/array                     string or array containing stored values
  */
-function fpGetPostMeta($uniqueId) {
+function fpGetMeta($fieldName, $forWhatPage) {
 
-    global $arrayOfSelectedOptions;
+    $arrayOfAllOptions = array();
 
-    if (isset($arrayOfSelectedOptions[$uniqueId])) {
-        return $arrayOfSelectedOptions[$uniqueId];
+    if ($forWhatPage == 'post') {
+        global $arrayOfSelectedOptions;
+        $arrayOfAllOptions = $arrayOfSelectedOptions;
+    } elseif ($forWhatPage == 'user') {
+        global $userSettings;
+        $arrayOfAllOptions = $userSettings;
+    }
+
+    if (isset($arrayOfAllOptions[$fieldName])) {
+        return $arrayOfAllOptions[$fieldName];
     } else {
         return null;
     }
 
 }
 
-/**
- * Create Radio Buttons
- */
+function renderDropdown($optionsArray, $fieldName, $forWhatPage) {
 
-function createRadioButtons($array, $uniqueId) {
-
-    $chosenValue = fpGetPostMeta($uniqueId);
-
-    foreach ($array as $key => $value) {
-
-        $selected = '';
-        if ($chosenValue == $key) {
-            $selected = 'checked';
-        }
-
-        echo '<div class="radio">';
-        echo '<label><input type="radio" name="' . $uniqueId . '" value="' . $key . '" '.$selected.'>' . $value . '</label>';
-        echo '</div>';
-    }
-
-}
-
-/**
- * Create Dropdown
- */
-
-function createDropDown($array, $uniqueId) {
-
-    $chosenValue = fpGetPostMeta($uniqueId);
+    $dbValue = fpGetMeta($fieldName, $forWhatPage);
 
     echo '<div class="selectpicker">';
-    echo '<select class="form-control" name="'. $uniqueId . '">';
+    echo '<select class="form-control" name="'. $fieldName . '">';
 
-    foreach ($array as $key => $value) {
+    foreach ($optionsArray as $key => $value) {
         $selected = '';
-        if ($chosenValue == $key) {
+        if ($dbValue == $key) {
             $selected = 'selected';
         }
         echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
     }
     echo '</select>';
     echo '</div>';
-
 }
 
 
-/**
- * Create check boxes
- */
+function renderRadioButtons($optionsArray, $fieldName, $forWhatPage) {
 
-function createCheckBoxes($array, $uniqueId) {
-
-    $chosenValue = fpGetPostMeta($uniqueId);
-
-    foreach ($array as $key => $value) {
-
-        $selected = '';
-
-        // chosen value can be an array!
-        if (isset($chosenValue)) {
-            foreach ($chosenValue as $key2 => $value2) {
-                if ($key == $value2) {
-                    $selected = 'checked';
-                }
-            }
-        }
-
-        echo '<div class="checkbox">';
-        echo '<label><input type="checkbox" name="' . $uniqueId . '[]" value="'. $key . '" '.$selected.'>' . $value . '</label>';
-        echo '</div>';
-    }
-
-}
-
-
-// --------------------------------------
-// from USER SETTINGS FACTORY
-// --------------------------------------
-
-function fpGetUserMeta($fieldName) {
-    global $userSettings;
-    if (isset($userSettings[$fieldName])) {
-        return $userSettings[$fieldName];
-    } else {
-        return null;
-    }
-}
-
-function renderDropdown($optionsArray, $fieldName) {
-
-    $dbValue = fpGetUserMeta($fieldName);
-
-    echo '<div class="selectpicker">';
-    echo '<select class="form-control" name="'. $fieldName . '">';
-
-    foreach ($optionsArray as $key => $value2) {
-        $selected = '';
-        if ($dbValue == $key) {
-            $selected = 'selected';
-        }
-        echo '<option value="'.$key.'" '.$selected.'>'.$value2.'</option>';
-    }
-    echo '</select>';
-    echo '</div>';
-}
-
-function renderRadioButtons($optionsArray, $fieldName) {
-
-    $dbValue = fpGetUserMeta($fieldName);
+    $dbValue = fpGetMeta($fieldName, $forWhatPage);
 
     foreach ($optionsArray as $key => $value2) {
 
@@ -149,9 +64,9 @@ function renderRadioButtons($optionsArray, $fieldName) {
     }
 }
 
-function renderCheckboxes($optionsArray, $fieldName) {
+function renderCheckboxes($optionsArray, $fieldName, $forWhatPage) {
 
-    $dbValue = fpGetUserMeta($fieldName);
+    $dbValue = fpGetMeta($fieldName, $forWhatPage);
 
     foreach ($optionsArray as $key => $value3) {
 
