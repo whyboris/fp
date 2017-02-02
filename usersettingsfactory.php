@@ -57,7 +57,7 @@ function registerUserMeta($displayName, $fieldName, $groupId = 1, $optionsArray 
  * Render User Settings
  * @param  string   $displayName    [description]
  * @param  string   $fieldName      [description]
- * @param  mixed    $dbValue          current value stored in a databse (string or array)
+ * @param  mixed    $dbValue        current value stored in a databse (string or array)
  * @param  array    $optionsArray   OPTIONAL -- array containing options for user
  * @param  string   $selectionType  can be 'dropdown', 'radio', or 'checkboxes'
  * @return void
@@ -100,7 +100,18 @@ include_once('renderelements.php');
  * @param  string   $groupNumber        Render out only user meta for this group number
  * @return void
  */
-function displayUserSettingsGroup($groupDisplayName, $groupDivId, $groupNumber) {
+function displayUserSettingsGroup($groupDisplayName, $groupDivId, $groupNumber, $XXX) {
+
+    // XXX -- to fix later -- will tell whether this is User settings or Blog settings
+    //
+
+    $allMeta = array();
+
+    if ($XXX == 'blog') {
+
+    } else {
+
+    }
 
     metaboxPrefix($groupDisplayName, $groupDivId);
 
