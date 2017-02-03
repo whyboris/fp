@@ -100,43 +100,26 @@ include_once('renderelements.php');
  * @param  string   $groupNumber        Render out only user meta for this group number
  * @return void
  */
-function displayMetaSettingsGroup($groupDisplayName, $groupDivId, $groupNumber, $XXX) {
+function displayMetaSettingsGroup($groupDisplayName, $groupDivId, $groupNumber, $whichMeta) {
 
     global $allUserMeta;
-    global $userSettings;
 
-    global $blogSettings;
-    //global $allBlogMeta;
-
-    //showMe($blogSettings);
-
-    // doesn't yet exist !!!
-    //showMe($allBlogMeta);
-
-    // XXX -- to fix later -- will tell whether this is User settings or Blog settings
-    //
-
-    $allMeta = array();
-
-    if ($XXX == 'blog') {
-        //echo "it's a BLOG SETTING!";
-
-        $userSettings = $blogSettings;
-        //$allUserMeta = $allBlogMeta;
-        // temp -- RENAME ASAP
-
-    } else {
-
+    if ($whichMeta == 'blog') {
+        global $blogSettings;
+        $metaSettings = $blogSettings;
+    } elseif ($whichMeta == 'user'){
+        global $userSettings;
+        $metaSettings = $userSettings;
     }
 
     metaboxPrefix($groupDisplayName, $groupDivId);
 
 
-    // cycle through all the registered user meta
+    // cycle through all the registered meta
     foreach ($allUserMeta as $key => $value) {
         if ($value[2] == $groupNumber) {
-            if (isset($userSettings[$value[1]])){
-                renderUserSetting($value[0], $value[1], $userSettings[$value[1]], $value[3], $value[4]);
+            if (isset($metaSettings[$value[1]])){
+                renderUserSetting($value[0], $value[1], $metaSettings[$value[1]], $value[3], $value[4]);
             } else {
                 renderUserSetting($value[0], $value[1], '', $value[3], $value[4]);
             }
@@ -146,9 +129,6 @@ function displayMetaSettingsGroup($groupDisplayName, $groupDivId, $groupNumber, 
     metaboxSuffix();
 
 }
-
-
-
 
 
  ?>
