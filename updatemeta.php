@@ -29,9 +29,11 @@ if (!empty($_POST)) {
     if ($origin == 'blog'){
         $sourceOfData = $allBlogMeta;
         $theCollection = $blogCollection;
+        $redirect = 'blogsettings.php';
     } elseif ($origin == 'user') {
         $sourceOfData = $allUserMeta;
         $theCollection = $userCollection;
+        $redirect = 'usersettings.php';
     }
 
     foreach($sourceOfData as $key => $value) {
@@ -54,5 +56,4 @@ if (!empty($_POST)) {
 
 }
 
-//header('Location: index.php');
-//header('Location: blogsettings.php');
+header('Location: ' . $redirect);
