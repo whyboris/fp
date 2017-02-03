@@ -12,7 +12,7 @@ include('usersettingsfactory.php');
 // later will be an ID -- at the moment just use the NAME
 $id = $_SESSION['name'];
 $query = array('name'=> $id);
-$blogSettings = $userCollection->findOne($query);
+$blogSettings = $blogCollection->findOne($query);
 
 ?>
 
@@ -31,10 +31,10 @@ $blogSettings = $userCollection->findOne($query);
 
 
 // Display Group 1
-displayUserSettingsGroup('Personal', 'blogMetabox', 3, 'blog');
+displayMetaSettingsGroup('Personal', 'blogMetabox', 3, 'blog');
 
 // Display Group 2
-//displayUserSettingsGroup('Professional', 'professionalMetabox', 2);
+//displayMetaSettingsGroup('Professional', 'professionalMetabox', 2);
 
 
 echo '<div><input class="btn btn-default" type="submit" value="Save"></div>';

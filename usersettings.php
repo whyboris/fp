@@ -31,10 +31,10 @@ $userSettings = $userCollection->findOne($query);
 
 
 // Display Group 1
-displayUserSettingsGroup('Personal', 'personalMetabox', 1);
+displayMetaSettingsGroup('Personal', 'personalMetabox', 1, 'user');
 
 // Display Group 2
-displayUserSettingsGroup('Professional', 'professionalMetabox', 2);
+displayMetaSettingsGroup('Professional', 'professionalMetabox', 2, 'user');
 
 
 echo '<div><input class="btn btn-default" type="submit" value="Save"></div>';
