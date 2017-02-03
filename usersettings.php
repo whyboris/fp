@@ -22,9 +22,11 @@ $userSettings = $userCollection->findOne($query);
 
         <div class="col-md-offset-1 col-md-6">
 
-            <form class="form-horizontal" action="userupdate.php" method="post">
+            <form class="form-horizontal" action="updatemeta.php" method="post">
 
                 <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
+
+                <input style="text" class="hidden" name="origin" value="user">
 
 <?php
 
@@ -42,6 +44,9 @@ echo '<div><input class="btn btn-default" type="submit" value="Save"></div>';
 // showMe($userSettings);
 
 // showMe($allUserMeta);
+//
+
+$_POST['secret'] = 'WOW';
 
 
  ?>
