@@ -60,7 +60,8 @@ echo '<input type="text"  class="form-control" name="title" value="' . $title . 
 metaboxSuffix();
 
 metaboxPrefix('Content', 'contentMetabox');
-echo '<textarea class="form-control" name="content" rows="14">' . $content . '</textarea>';
+//echo '<textarea class="form-control" name="content" rows="14">' . $content . '</textarea>';
+echo '<div id="summernote">Hello Summernote</div>';
 metaboxSuffix();
 
 metaboxPrefix('Excerpt', 'excerptMetabox');

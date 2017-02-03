@@ -27,6 +27,11 @@ function showMe($var){
     <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
     <link rel="icon" href="assets/favicon.png" type="image/png">
 
+    <!-- SUMMERNOTE code - make conditional based on page -->
+
+    <link href="assets/summernote.css" rel="stylesheet">
+    <script src="assets/summernote.min.js"></script>
+
 <?php
     if (isset($dataTables)) {
 ?>
@@ -50,6 +55,21 @@ function showMe($var){
 
 ?>
 
+    <!-- summernote - make it conditional -->
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+          $('#summernote').summernote({
+              height: 300,                 // set editor height
+              minHeight: null,             // set minimum height of editor
+              maxHeight: null,             // set maximum height of editor
+              focus: true                  // set focus to editable area after initializing summernote
+          });
+        });
+
+
+    </script>
 
 </head>
 
