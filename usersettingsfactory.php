@@ -1,6 +1,7 @@
 <?php
 
 $allUserMeta = array();
+$allBlogMeta = array();
 
 $contribTypeArray = array(
     'contributor' => 'Contributor',
@@ -21,37 +22,50 @@ $privilegeArray = array(
 );
 
 // Register Fields for Group 1
-registerUserMeta('First Name', 'name', 1);
-registerUserMeta('Last Name', 'lastName', 1);
-registerUserMeta('Twitter', 'twitter', 1);
-registerUserMeta('Facebook', 'facebook', 1);
-registerUserMeta('Instagram', 'instagram', 1);
+registerMeta('First Name', 'name', 'user', 1);
+registerMeta('Last Name', 'lastName', 'user', 1);
+registerMeta('Twitter', 'twitter', 'user', 1);
+registerMeta('Facebook', 'facebook', 'user', 1);
+registerMeta('Instagram', 'instagram', 'user', 1);
 
 // Register Fields for Group 2
-registerUserMeta('Contributor Type', 'type', 2, $contribTypeArray, 'dropdown');
-registerUserMeta('Salary', 'salary', 2);
-registerUserMeta('Department', 'department', 2, $deptArray, 'radio');
-registerUserMeta('Privileges', 'privilege', 2, $privilegeArray, 'checkboxes');
+registerMeta('Contributor Type', 'type', 'user', 2, $contribTypeArray, 'dropdown');
+registerMeta('Salary', 'salary', 'user', 2);
+registerMeta('Department', 'department', 'user', 2, $deptArray, 'radio');
+registerMeta('Privileges', 'privilege', 'user', 2, $privilegeArray, 'checkboxes');
+
+// for BLOG SETTINGS
+registerMeta('DO NOT CHANGE', 'name', 'blog', 3);
+registerMeta('Category', 'category', 'blog', 3);
+registerMeta('Subtitle', 'subtitle', 'blog', 3);
+registerMeta('Primary Author', 'primaryAuthor', 'blog', 3);
 
 /**
  * Register user meta field -- if no $selectionType set, defaults to text field
  * @param  string   $displayName    Name of field shown to user
  * @param  string   $fieldName      field name for database
+ * @param  string   $whoFor         either 'user', or 'blog'
  * @param  integer  $groupId        categorize entries into groups
  * @param  array    $optionsArray   array of options if selection type is not null
  * @param  string   $selectionType  Must be 'dropdown', 'radio', 'checkboxes'
  * @return void
  */
-function registerUserMeta($displayName, $fieldName, $groupId = 1, $optionsArray = null, $selectionType = null) {
+function registerMeta($displayName, $fieldName, $whoFor, $groupId = 1, $optionsArray = null, $selectionType = null) {
     global $allUserMeta;
-    array_push($allUserMeta, array($displayName, $fieldName, $groupId, $optionsArray, $selectionType));
+    global $allBlogMeta;
+    if ($whoFor == 'user') {
+        array_push($allUserMeta, array($displayName, $fieldName, $groupId, $optionsArray, $selectionType));
+    } elseif ($whoFor == 'blog') {
+        array_push($allBlogMeta, array($displayName, $fieldName, $groupId, $optionsArray, $selectionType));
+    }
+
 }
 
 /**
  * Render User Settings
  * @param  string   $displayName    [description]
  * @param  string   $fieldName      [description]
- * @param  mixed    $dbValue          current value stored in a databse (string or array)
+ * @param  mixed    $dbValue        current value stored in a databse (string or array)
  * @param  array    $optionsArray   OPTIONAL -- array containing options for user
  * @param  string   $selectionType  can be 'dropdown', 'radio', or 'checkboxes'
  * @return void
@@ -92,20 +106,33 @@ include_once('renderelements.php');
  * @param  string   $groupDisplayName   Group name to display
  * @param  string   $groupDivId         Div id for jQuery to grab (not needed yet)
  * @param  string   $groupNumber        Render out only user meta for this group number
+ * @param  string   $whichMeta          Can be 'blog' or 'user'
  * @return void
  */
-function displayUserSettingsGroup($groupDisplayName, $groupDivId, $groupNumber) {
+function displayMetaSettingsGroup($groupDisplayName, $groupDivId, $groupNumber, $whichMeta) {
+
+    $theUserMeta = array();
+
+    if ($whichMeta == 'blog') {
+        global $blogSettings;
+        global $allBlogMeta;
+        $theUserMeta = $allBlogMeta;
+        $metaSettings = $blogSettings;
+    } elseif ($whichMeta == 'user'){
+        global $allUserMeta;
+        global $userSettings;
+        $theUserMeta = $allUserMeta;
+        $metaSettings = $userSettings;
+    }
 
     metaboxPrefix($groupDisplayName, $groupDivId);
 
-    global $allUserMeta;
-    global $userSettings;
 
-    // cycle through all the registered user meta
-    foreach ($allUserMeta as $key => $value) {
+    // cycle through all the registered meta
+    foreach ($theUserMeta as $key => $value) {
         if ($value[2] == $groupNumber) {
-            if (isset($userSettings[$value[1]])){
-                renderUserSetting($value[0], $value[1], $userSettings[$value[1]], $value[3], $value[4]);
+            if (isset($metaSettings[$value[1]])){
+                renderUserSetting($value[0], $value[1], $metaSettings[$value[1]], $value[3], $value[4]);
             } else {
                 renderUserSetting($value[0], $value[1], '', $value[3], $value[4]);
             }
@@ -115,9 +142,6 @@ function displayUserSettingsGroup($groupDisplayName, $groupDivId, $groupNumber) 
     metaboxSuffix();
 
 }
-
-
-
 
 
  ?>

@@ -18,6 +18,8 @@ function fpGetMeta($fieldName, $forWhatPage) {
     } elseif ($forWhatPage == 'user') {
         global $userSettings;
         $arrayOfAllOptions = $userSettings;
+    } elseif ($forWhatPage == 'blog') {
+        global $blogSettings;
     }
 
     if (isset($arrayOfAllOptions[$fieldName])) {

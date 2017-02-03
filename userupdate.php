@@ -26,11 +26,11 @@ if (!empty($_POST)) {
     $userCollection->update($query, array('$set' => $insertionArray));
 
     // INSERT -- temporary until I create Register page
-    //$userCollection->insert($post);
+    //$userCollection->insert($query);
 
-    // showMe($_POST);
+     //showMe($_POST);
 
-    // showMe($insertionArray);
+     //showMe($insertionArray);
 
 }
 

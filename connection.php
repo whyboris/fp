@@ -6,4 +6,6 @@ $postCollection = $db->posts;
 
 $userCollection = $db->users;
 
+$blogCollection = $db->blogs;
+
 ?>
