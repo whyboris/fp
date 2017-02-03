@@ -14,7 +14,7 @@ if (!empty($_POST)) {
 
     // showMe($allUserMeta);
 
-    foreach($allUserMeta as $key => $value) {
+    foreach($allBlogMeta as $key => $value) {
         if (isset($_POST[$value[1]]) && $_POST[$value[1]]!='') {
             $insertionArray[$value[1]] = $_POST[$value[1]];
         }
