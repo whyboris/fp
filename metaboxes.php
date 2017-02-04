@@ -4,21 +4,22 @@ include('postarrays.php');
 include('metaboxfactory.php');
 
 function bestPartOfDay($uniqueId) {
+    echo "<em>Custom HTML appears above</em>";
     renderRadioButtons(getPartsOfDay(), $uniqueId, 'post');
 }
 registerMetaBox('Post type', 'timeOfDay', 'bestPartOfDay', 2);
 
 function faveFlavors($uniqueId) {
-    echo "<em>Custom HTML appear above</em>";
     renderCheckBoxes(getFaveFlavors(), $uniqueId, 'post');
-    echo "<em>Custom HTML appear below</em>";
+    echo "<em>Custom HTML appears below</em>";
 }
 registerMetaBox('Categories', 'flavors', 'faveFlavors', 4);
 
-function aDropDown($uniqueId) {
-    renderDropDown(getCarTypes(), $uniqueId, 'post');
+function theHashtags($uniqueId) {
+    renderDropDown(getHashtags(), $uniqueId, 'post');
+    echo "<br><em>Hashtags help your post get more exposure</em>";
 }
-registerMetaBox('Hashtags', 'bestCar', 'aDropDown', 6);
+registerMetaBox('Hashtags', 'hashtag', 'theHashtags', 6);
 
 // DISABLED ONES
 

@@ -43,16 +43,18 @@ $(document).ready(function() {
 
     console.log("custom.js running");
 
-
+    // Used for hiding metaboxes - through screen options
     $("#allOptions").find(':checkbox').click(function(){
         console.log($(this).val());
         $('#' + $(this).val()).toggle();
     })
 
+    // when submitting the post
     $('#thePostForm').submit(function() {
         validateForm();
     });
 
+    // store contents of summernote into post body field
     function validateForm() {
         var markupStr = $('#summernote').summernote('code');
         $('#thePostContents').val(markupStr);

@@ -35,14 +35,14 @@ function getFaveDrink() {
     return $flavorsArray;
 }
 
-function getCarTypes() {
-    $carArray = array(
+function getHashtags() {
+    $hashtagArray = array(
         'volvo' => '#yolo',
         'saab' => '#pokemon',
         'fiat' => '#doge',
         'audi' => '#test',
     );
-    return $carArray;
+    return $hashtagArray;
 }
 
 function getIceCream() {
