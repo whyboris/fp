@@ -1,5 +1,21 @@
 $(document).ready(function() {
 
+    var HelloButton = function (context) {
+      var ui = $.summernote.ui;
+
+      // create button
+      var button = ui.button({
+        contents: '<i class="fa fa-child"/> Hello',
+        tooltip: 'hello',
+        click: function () {
+          // invoke insertText method with 'hello' on editor module.
+          context.invoke('editor.insertText', 'hello ');
+        }
+      });
+
+      return button.render();   // return button as jquery object
+    }
+
     $('#summernote').summernote({
 
         height: 300,
@@ -11,8 +27,13 @@ $(document).ready(function() {
           ['insert', ['link']],
           ['font', ['superscript', 'subscript']],
           ['list', ['ul', 'ol']],
+          ['mybutton', ['hello']],
           ['misc', ['fullscreen']]
-        ]
+        ],
+
+        buttons: {
+          hello: HelloButton
+        }
 
     });
 
