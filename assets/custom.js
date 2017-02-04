@@ -8,8 +8,10 @@ $(document).ready(function() {
         toolbar: [
           // [groupName, [list of button]]
           ['style', ['bold', 'italic', 'underline']],
+          ['insert', ['link']],
           ['font', ['superscript', 'subscript']],
-          ['para', ['ul', 'ol']]
+          ['list', ['ul', 'ol']],
+          ['misc', ['fullscreen']]
         ]
 
     });

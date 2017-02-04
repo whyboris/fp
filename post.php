@@ -41,11 +41,7 @@ foreach ($allMetaBoxes as $key => $value) {
         <div class="col-md-offset-1 col-md-6">
 
             <!-- Button to trigger modal -->
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-                Screen Options
-            </button>
 
-            <br><br>
 
             <form id="thePostForm" class="bs-example bs-example-form" action="postsubmit.php" method="post">
 
@@ -55,9 +51,14 @@ foreach ($allMetaBoxes as $key => $value) {
 
 // Default must-show fields:
 
-metaboxPrefix('Title', 'titleMetabox');
+//metaboxPrefix('Title', 'titleMetabox');
+
+echo '<div class="">';
+echo '<label for="title">Headline</label>';
 echo '<input type="text"  class="form-control" name="title" value="' . $title . '">';
-metaboxSuffix();
+echo '<br>';
+echo '</div>';
+//metaboxSuffix();
 
 //metaboxPrefix('Content', 'contentMetabox');
 //echo '<textarea class="form-control" name="content" rows="14">' . $content . '</textarea>';
@@ -80,6 +81,7 @@ displayAllMetaBoxes();
 
 metaboxPrefix('Save', 'publishMetabox');
 echo "<p>Please don't forget to check spelling!</p>";
+echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Screen Options</button>';
 echo '<div class="pull-right"><input id="thePostSubmitButton" class="btn btn-default" type="submit" value="Save"></div>';
 metaboxSuffix();
 
