@@ -37,11 +37,10 @@ function getFaveDrink() {
 
 function getCarTypes() {
     $carArray = array(
-        'volvo' => 'Volvo',
-        'saab' => 'Saab',
-        'fiat' => 'Fiat',
-        'audi' => 'Audi',
-        'honda' => 'Honda',
+        'volvo' => '#yolo',
+        'saab' => '#pokemon',
+        'fiat' => '#doge',
+        'audi' => '#test',
     );
     return $carArray;
 }

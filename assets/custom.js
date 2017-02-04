@@ -1,5 +1,22 @@
 $(document).ready(function() {
 
+    $('#summernote').summernote({
+
+        height: 300,
+        disableResizeEditor: true,
+
+        toolbar: [
+          // [groupName, [list of button]]
+          ['style', ['bold', 'italic', 'underline']],
+          ['font', ['superscript', 'subscript']],
+          ['para', ['ul', 'ol']]
+        ]
+
+    });
+
+    // remove summernote bottom of editor that looks dragable
+    $('.note-icon-bar').hide();
+    $('.note-resizebar').css({'background-color': '#FFFFFF', 'border-radius': '5px', 'cursor': 'initial'});
 
     console.log("custom.js running");
 
