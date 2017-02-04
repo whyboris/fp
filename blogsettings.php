@@ -22,7 +22,7 @@ $blogSettings = $blogCollection->findOne($query);
 
         <div class="col-md-offset-1 col-md-6">
 
-            <form class="form-horizontal" action="updatemeta.php" method="post">
+            <form class="form-horizontal" action="savetodb.php" method="post">
 
                 <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
 

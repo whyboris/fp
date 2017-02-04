@@ -47,7 +47,7 @@ foreach ($allMetaBoxes as $key => $value) {
 
             <br><br>
 
-            <form class="bs-example bs-example-form" action="postsubmit.php" method="post">
+            <form id="thePostForm" class="bs-example bs-example-form" action="postsubmit.php" method="post">
 
                 <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
 
@@ -59,9 +59,12 @@ metaboxPrefix('Title', 'titleMetabox');
 echo '<input type="text"  class="form-control" name="title" value="' . $title . '">';
 metaboxSuffix();
 
-metaboxPrefix('Content', 'contentMetabox');
-echo '<textarea class="form-control" name="content" rows="14">' . $content . '</textarea>';
-metaboxSuffix();
+//metaboxPrefix('Content', 'contentMetabox');
+//echo '<textarea class="form-control" name="content" rows="14">' . $content . '</textarea>';
+echo '<input class="hidden" id="thePostContents" value="'.$content.'" name="content">';
+//metaboxSuffix();
+
+echo '<div id="summernote"></div>';
 
 metaboxPrefix('Excerpt', 'excerptMetabox');
 echo '<textarea class="form-control" name="excerpt" rows="4">' . $excerpt . '</textarea>';
@@ -77,7 +80,7 @@ displayAllMetaBoxes();
 
 metaboxPrefix('Save', 'publishMetabox');
 echo "<p>Please don't forget to check spelling!</p>";
-echo '<div class="pull-right"><input class="btn btn-default" type="submit" value="Save"></div>';
+echo '<div class="pull-right"><input id="thePostSubmitButton" class="btn btn-default" type="submit" value="Save"></div>';
 metaboxSuffix();
 
 
