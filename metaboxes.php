@@ -3,23 +3,23 @@
 include('postarrays.php');
 include('metaboxfactory.php');
 
-function bestPartOfDay($uniqueId) {
-    echo "<em>Custom HTML appears above</em>";
-    renderRadioButtons(getPartsOfDay(), $uniqueId, 'post');
+function categoriesBox($uniqueId) {
+    echo "<em>The category of post</em>";
+    renderRadioButtons(getCategories(), $uniqueId, 'post');
 }
-registerMetaBox('Post type', 'timeOfDay', 'bestPartOfDay', 2);
+registerMetaBox('Category', 'category', 'categoriesBox', 2);
 
-function faveFlavors($uniqueId) {
-    renderCheckBoxes(getFaveFlavors(), $uniqueId, 'post');
-    echo "<em>Custom HTML appears below</em>";
+function topicsBox($uniqueId) {
+    renderCheckBoxes(getTopics(), $uniqueId, 'post');
+    echo "<em>Select all topics that you are writing about</em>";
 }
-registerMetaBox('Categories', 'flavors', 'faveFlavors', 4);
+registerMetaBox('Topics', 'topics', 'topicsBox', 4);
 
-function theHashtags($uniqueId) {
+function hashtagsBox($uniqueId) {
     renderDropDown(getHashtags(), $uniqueId, 'post');
     echo "<br><em>Hashtags help your post get more exposure</em>";
 }
-registerMetaBox('Hashtags', 'hashtag', 'theHashtags', 6);
+registerMetaBox('Hashtags', 'hashtag', 'hashtagsBox', 6);
 
 // DISABLED ONES
 

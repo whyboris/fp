@@ -4,23 +4,32 @@
  * All arrays of all data
  */
 
-function getPartsOfDay() {
-    $partsArray = array(
-        'morning'=>'Morning',
-        'afternoon'=>'Afternoon',
-        'evening'=>'Evening',
-//        'night'=>'Night',
+function getCategories() {
+    $categories = array(
+        'ad'=>'Advertising',
+        'education'=>'Education',
+        'opinion'=>'Opinion',
     );
-    return $partsArray;
+    return $categories;
 }
 
-function getFaveFlavors() {
-    $flavorsArray = array(
-        'chocolate'=>'Chocolate',
+function getTopics() {
+    $topics = array(
         'vanilla'=>'Vanilla',
+        'chocolate'=>'Chocolate',
         'strawberry'=>'Strawberry',
     );
-    return $flavorsArray;
+    return $topics;
+}
+
+function getHashtags() {
+    $hashtagArray = array(
+        'test' => '#test',
+        'doge' => '#doge',
+        'pokemon' => '#pokemon',
+        'likeaboss' => '#likeaboss',
+    );
+    return $hashtagArray;
 }
 
 function getFaveDrink() {
@@ -33,16 +42,6 @@ function getFaveDrink() {
         'milk2'=>'Milk2',
     );
     return $flavorsArray;
-}
-
-function getHashtags() {
-    $hashtagArray = array(
-        'volvo' => '#yolo',
-        'saab' => '#pokemon',
-        'fiat' => '#doge',
-        'audi' => '#test',
-    );
-    return $hashtagArray;
 }
 
 function getIceCream() {
