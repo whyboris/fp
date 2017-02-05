@@ -34,11 +34,53 @@ if (!empty($_POST)) {
         $sourceOfData = $allUserMeta;
         $theCollection = $userCollection;
         $redirect = 'usersettings.php';
+    } elseif ($origin == 'post') {
+        $sourceOfData = $allMetaBoxes;
+        $theCollection = $postCollection;
+        $redirect = 'index.php';
+
+        // manually enter some fields
+        // TODO -- automate later
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        $excerpt = $_POST['excerpt'];
+        $author = $_SESSION['name'];
+
+        $insertionArray = array(
+            'title'=>$title,
+            'content'=>$content,
+            'excerpt'=>$excerpt,
+            'author'=>$author,
+            'time'=> new MongoDate(),
+        );
+
+        include('metaboxes.php');
+
+        // REFACTOR BELOW:
+        foreach ($sourceOfData as $key => $value) {
+            $current = $sourceOfData[$key][1];
+            $insertionArray[$current]= $_POST[$current];
+        }
+
+        if ($_POST['id'] != 0) {
+            // UPDATE current article
+            $id = $_POST['id'];
+            $query = array('_id'=> new MongoId($id));
+            $theCollection->update($query, array('$set' => $insertionArray));
+        } else {
+            // INSERT new article
+            $theCollection->insert($insertionArray);
+        }
+
+        header('Location: ' . $redirect);
+        // REFACTOR ABOVE!
+
     }
 
-    foreach($sourceOfData as $key => $value) {
-        if (isset($_POST[$value[1]]) && $_POST[$value[1]]!='') {
-            $insertionArray[$value[1]] = $_POST[$value[1]];
+    foreach ($sourceOfData as $key => $value) {
+        $current = $_POST[$value[1]];
+        if (isset($current) && $current != '') {
+            $insertionArray[$value[1]] = $current;
         }
     }
 

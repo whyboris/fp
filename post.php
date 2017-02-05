@@ -43,9 +43,11 @@ foreach ($allMetaBoxes as $key => $value) {
             <!-- Button to trigger modal -->
 
 
-            <form id="thePostForm" class="bs-example bs-example-form" action="postsubmit.php" method="post">
+            <form id="thePostForm" class="bs-example bs-example-form" action="savetodb.php" method="post">
 
                 <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
+
+                <input style="text" class="hidden" name="origin" value="post">
 
 <?php
 
