@@ -74,7 +74,7 @@ if (!empty($_POST)) {
 // LOG STUFF
 // echo "POST:";
 // echo "<br>";
- showMe($_POST);
+// showMe($_POST);
 // showMe($allUserMeta);
 // showMe($allBlogMeta);
 // showMe($insertionArray);
@@ -82,4 +82,4 @@ if (!empty($_POST)) {
 // echo "<br>";
 // showMe($sourceOfData);
 
-//header('Location: ' . $redirect);
+header('Location: ' . $redirect);
