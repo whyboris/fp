@@ -53,7 +53,7 @@ $blogId = $blogSettings['_id'];
 displayMetaSettingsGroup('Main settings', 'blogMetabox', 3, 'blog');
 
 // Display Group 2
-//displayMetaSettingsGroup('Professional', 'professionalMetabox', 2);
+displayMetaSettingsGroup('Other settings', 'blogOtherMetabox', 4, 'blog');
 
 
 echo '<div><input class="btn btn-default" type="submit" value="Save"></div>';

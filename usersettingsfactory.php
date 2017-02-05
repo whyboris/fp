@@ -31,15 +31,21 @@ registerMeta('Instagram', 'instagram', 'user', 1);
 
 // Register Fields for Group 2
 registerMeta('Contributor Type', 'type', 'user', 2, $contribTypeArray, 'dropdown');
-registerMeta('Salary', 'salary', 'user', 2);
 registerMeta('Department', 'department', 'user', 2, $deptArray, 'radio');
 registerMeta('Privileges', 'privilege', 'user', 2, $privilegeArray, 'checkboxes');
+registerMeta('Salary', 'salary', 'user', 2);
 
 // for BLOG SETTINGS
 registerMeta('Name of blog', 'name', 'blog', 3);
 registerMeta('Subtitle', 'subtitle', 'blog', 3);
 registerMeta('Category', 'category', 'blog', 3);
 registerMeta('Primary Author', 'primaryAuthor', 'blog', 3);
+
+// for BLOG SETTINGS
+registerMeta('Dropdown', 'name1', 'blog', 4, $contribTypeArray, 'dropdown');
+registerMeta('Radio buttons', 'name2', 'blog', 4, $deptArray, 'radio');
+registerMeta('Checkboxes', 'name3', 'blog', 4, $privilegeArray, 'checkboxes');
+registerMeta('Comments', 'comments', 'blog', 4);
 
 /**
  * Register user meta field -- if no $selectionType set, defaults to text field
@@ -115,8 +121,8 @@ function displayMetaSettingsGroup($groupDisplayName, $groupDivId, $groupNumber, 
     $theUserMeta = array();
 
     if ($whichMeta == 'blog') {
-        global $blogSettings;
         global $allBlogMeta;
+        global $blogSettings;
         $theUserMeta = $allBlogMeta;
         $metaSettings = $blogSettings;
     } elseif ($whichMeta == 'user'){

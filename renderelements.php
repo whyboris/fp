@@ -8,7 +8,7 @@
  * @param  string           $forWhatPage    either "user" or "post"
  * @return string/array                     string or array containing stored values
  */
-function fpGetMeta($fieldName, $forWhatPage) {
+function mpGetMeta($fieldName, $forWhatPage) {
 
     $arrayOfAllOptions = array();
 
@@ -32,7 +32,7 @@ function fpGetMeta($fieldName, $forWhatPage) {
 
 function renderDropdown($optionsArray, $fieldName, $forWhatPage) {
 
-    $dbValue = fpGetMeta($fieldName, $forWhatPage);
+    $dbValue = mpGetMeta($fieldName, $forWhatPage);
 
     echo '<div class="selectpicker">';
     echo '<select class="form-control" name="'. $fieldName . '">';
@@ -51,7 +51,7 @@ function renderDropdown($optionsArray, $fieldName, $forWhatPage) {
 
 function renderRadioButtons($optionsArray, $fieldName, $forWhatPage) {
 
-    $dbValue = fpGetMeta($fieldName, $forWhatPage);
+    $dbValue = mpGetMeta($fieldName, $forWhatPage);
 
     foreach ($optionsArray as $key => $value2) {
 
@@ -68,7 +68,7 @@ function renderRadioButtons($optionsArray, $fieldName, $forWhatPage) {
 
 function renderCheckboxes($optionsArray, $fieldName, $forWhatPage) {
 
-    $dbValue = fpGetMeta($fieldName, $forWhatPage);
+    $dbValue = mpGetMeta($fieldName, $forWhatPage);
 
     foreach ($optionsArray as $key => $value3) {
 

@@ -27,6 +27,8 @@ if (!empty($_POST)) {
         $excerpt = $_POST['excerpt'];
         $author = $_SESSION['name'];
 
+        $redirect = 'post.php?id=' . $_POST['id'];
+
         $insertionArray = array(
             'title'=>$title,
             'content'=>$content,
@@ -46,6 +48,7 @@ if (!empty($_POST)) {
     }
 
     // prepare the array to insert into DB
+    // TODO -- allow all checkboxes to be unchecked -- currently they don't update if all unchecked!
     foreach ($sourceOfData as $key => $value) {
         $current = $sourceOfData[$key][1];
         //showMe($current);
@@ -54,39 +57,24 @@ if (!empty($_POST)) {
         }
     }
 
-    // REFACTOR BELOW:
-    if ($origin == 'post') {
-        if ($_POST['id'] != 0) {
-            // UPDATE current article
-            $id = $_POST['id'];
-            $query = array('_id'=> new MongoId($id));
-            $theCollection->update($query, array('$set' => $insertionArray));
-        } else {
-            // INSERT new article
-            $theCollection->insert($insertionArray);
-        }
-
-    } else {
-    // REFACTOR ABOVE!
-
-        // OLD update
-        $id = $_POST['name'];
-        $query = array('name'=> $id);
-        // new update
+    if ($_POST['id'] != 0) {
+        // UPDATE current article
         $id = $_POST['id'];
         $query = array('_id'=> new MongoId($id));
         $theCollection->update($query, array('$set' => $insertionArray));
-
-        // INSERT -- temporary until I create Register page
-        //$userCollection->insert($query);
+    } else {
+        // INSERT new article
+        // TODO -- fix this -- may error out with blog settings & user settings
+        $theCollection->insert($insertionArray);
     }
+
 
 }
 
 // LOG STUFF
 // echo "POST:";
 // echo "<br>";
-// showMe($_POST);
+ showMe($_POST);
 // showMe($allUserMeta);
 // showMe($allBlogMeta);
 // showMe($insertionArray);
@@ -94,4 +82,4 @@ if (!empty($_POST)) {
 // echo "<br>";
 // showMe($sourceOfData);
 
-header('Location: ' . $redirect);
+//header('Location: ' . $redirect);
