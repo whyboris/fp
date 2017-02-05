@@ -13,31 +13,25 @@ function showMe($var){
     echo "</pre>";
 }
 
+// LOG STUFF
+showMe($_POST);
+//showMe($allUserMeta);
+//showMe($allBlogMeta);
+
+
+$redirect = 'index.php';
 
 if (!empty($_POST)) {
 
-    //$name = $_POST['name'];
+    // either "user" or "blog" or "post"
+    $origin = $_POST['origin'];
 
     $insertionArray = array();
 
-    //showMe($allUserMeta);
-    //showMe($allBlogMeta);
-
-    // either "user" or "blog"
-    $origin = $_POST['origin'];
-
-    if ($origin == 'blog'){
-        $sourceOfData = $allBlogMeta;
-        $theCollection = $blogCollection;
-        $redirect = 'blogsettings.php';
-    } elseif ($origin == 'user') {
-        $sourceOfData = $allUserMeta;
-        $theCollection = $userCollection;
-        $redirect = 'usersettings.php';
-    } elseif ($origin == 'post') {
+    if ($origin == 'post') {
+        include('metaboxes.php');
         $sourceOfData = $allMetaBoxes;
         $theCollection = $postCollection;
-        $redirect = 'index.php';
 
         // manually enter some fields
         // TODO -- automate later
@@ -54,12 +48,15 @@ if (!empty($_POST)) {
             'time'=> new MongoDate(),
         );
 
-        include('metaboxes.php');
+        //showMe($sourceOfData);
 
         // REFACTOR BELOW:
         foreach ($sourceOfData as $key => $value) {
             $current = $sourceOfData[$key][1];
-            $insertionArray[$current]= $_POST[$current];
+            //showMe($current);
+            if (isset($_POST[$current]) && $_POST[$current] !='') {
+                $insertionArray[$current]= $_POST[$current];
+            }
         }
 
         if ($_POST['id'] != 0) {
@@ -72,30 +69,45 @@ if (!empty($_POST)) {
             $theCollection->insert($insertionArray);
         }
 
-        header('Location: ' . $redirect);
         // REFACTOR ABOVE!
 
-    }
+    } else {
 
-    foreach ($sourceOfData as $key => $value) {
-        $current = $_POST[$value[1]];
-        if (isset($current) && $current != '') {
-            $insertionArray[$value[1]] = $current;
+        if ($origin == 'blog'){
+            $sourceOfData = $allBlogMeta;
+            $theCollection = $blogCollection;
+            $redirect = 'blogsettings.php';
+        } elseif ($origin == 'user') {
+            $sourceOfData = $allUserMeta;
+            $theCollection = $userCollection;
+            $redirect = 'usersettings.php';
         }
+
+        foreach ($sourceOfData as $key => $value) {
+            $current = $_POST[$value[1]];
+            if (isset($current) && $current != '') {
+                $insertionArray[$value[1]] = $current;
+            }
+        }
+
+        // update
+        $id = $_POST['name'];
+        $query = array('name'=> $id);
+        $theCollection->update($query, array('$set' => $insertionArray));
+
+        // INSERT -- temporary until I create Register page
+        //$userCollection->insert($query);
+
+         //showMe($_POST);
+
+         //showMe($insertionArray);
+
     }
-
-    // update
-    $id = $_POST['name'];
-    $query = array('name'=> $id);
-    $theCollection->update($query, array('$set' => $insertionArray));
-
-    // INSERT -- temporary until I create Register page
-    //$userCollection->insert($query);
-
-     //showMe($_POST);
-
-     //showMe($insertionArray);
 
 }
 
-header('Location: ' . $redirect);
+echo "SOURCE OF DATA:";
+echo "<br>";
+showMe($sourceOfData);
+
+//header('Location: ' . $redirect);
