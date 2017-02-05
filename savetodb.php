@@ -54,7 +54,7 @@ if (!empty($_POST)) {
         foreach ($sourceOfData as $key => $value) {
             $current = $sourceOfData[$key][1];
             //showMe($current);
-            if (isset($_POST[$current]) && $_POST[$current] !='') {
+            if (isset($_POST[$current])) {
                 $insertionArray[$current]= $_POST[$current];
             }
         }
@@ -84,9 +84,10 @@ if (!empty($_POST)) {
         }
 
         foreach ($sourceOfData as $key => $value) {
-            $current = $_POST[$value[1]];
-            if (isset($current) && $current != '') {
-                $insertionArray[$value[1]] = $current;
+            $current = $sourceOfData[$key][1];
+            //showMe($current);
+            if (isset($_POST[$current])) {
+                $insertionArray[$current]= $_POST[$current];
             }
         }
 
