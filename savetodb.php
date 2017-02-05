@@ -14,6 +14,8 @@ function showMe($var){
 }
 
 // LOG STUFF
+echo "POST:";
+echo "<br>";
 showMe($_POST);
 //showMe($allUserMeta);
 //showMe($allBlogMeta);
@@ -48,17 +50,27 @@ if (!empty($_POST)) {
             'time'=> new MongoDate(),
         );
 
-        //showMe($sourceOfData);
+    } elseif ($origin == 'blog'){
+        $sourceOfData = $allBlogMeta;
+        $theCollection = $blogCollection;
+        $redirect = 'blogsettings.php';
+    } elseif ($origin == 'user') {
+        $sourceOfData = $allUserMeta;
+        $theCollection = $userCollection;
+        $redirect = 'usersettings.php';
+    }
 
-        // REFACTOR BELOW:
-        foreach ($sourceOfData as $key => $value) {
-            $current = $sourceOfData[$key][1];
-            //showMe($current);
-            if (isset($_POST[$current])) {
-                $insertionArray[$current]= $_POST[$current];
-            }
+    // prepare the array to insert into DB
+    foreach ($sourceOfData as $key => $value) {
+        $current = $sourceOfData[$key][1];
+        //showMe($current);
+        if (isset($_POST[$current])) {
+            $insertionArray[$current]= $_POST[$current];
         }
+    }
 
+    // REFACTOR BELOW:
+    if ($origin == 'post') {
         if ($_POST['id'] != 0) {
             // UPDATE current article
             $id = $_POST['id'];
@@ -69,27 +81,8 @@ if (!empty($_POST)) {
             $theCollection->insert($insertionArray);
         }
 
-        // REFACTOR ABOVE!
-
     } else {
-
-        if ($origin == 'blog'){
-            $sourceOfData = $allBlogMeta;
-            $theCollection = $blogCollection;
-            $redirect = 'blogsettings.php';
-        } elseif ($origin == 'user') {
-            $sourceOfData = $allUserMeta;
-            $theCollection = $userCollection;
-            $redirect = 'usersettings.php';
-        }
-
-        foreach ($sourceOfData as $key => $value) {
-            $current = $sourceOfData[$key][1];
-            //showMe($current);
-            if (isset($_POST[$current])) {
-                $insertionArray[$current]= $_POST[$current];
-            }
-        }
+    // REFACTOR ABOVE!
 
         // update
         $id = $_POST['name'];
@@ -98,14 +91,11 @@ if (!empty($_POST)) {
 
         // INSERT -- temporary until I create Register page
         //$userCollection->insert($query);
-
-         //showMe($_POST);
-
-         //showMe($insertionArray);
-
     }
 
 }
+
+//showMe($insertionArray);
 
 echo "SOURCE OF DATA:";
 echo "<br>";
