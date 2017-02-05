@@ -52,7 +52,7 @@ include('header.php');
                     <th>Title</th>
                     <th>Excerpt</th>
                     <th>Time</th>
-                    <th>Delete</th>
+                    <th><center>Delete</center></th>
                 </tr>
             </thead>
             <tbody>

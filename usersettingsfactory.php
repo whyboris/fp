@@ -68,8 +68,10 @@ function registerMeta($displayName, $fieldName, $whoFor, $groupId = 1, $optionsA
 
 }
 
+// TODO -- maybe change the order so optional parameters come last
+
 /**
- * Render User Settings
+ * Render These Settings
  * @param  string   $displayName    [description]
  * @param  string   $fieldName      [description]
  * @param  mixed    $dbValue        current value stored in a databse (string or array)
@@ -78,7 +80,7 @@ function registerMeta($displayName, $fieldName, $whoFor, $groupId = 1, $optionsA
  * @param  string   $whichMeta      can be 'user', 'blog'
  * @return void
  */
-function renderUserSetting($displayName, $fieldName, $dbValue, $optionsArray, $selectionType, $whichMeta){
+function renderTheseSettings($displayName, $fieldName, $dbValue, $optionsArray, $selectionType, $whichMeta){
     echo '<div class="form-group">';
 
         echo '<label class="control-label col-sm-3" for="name">'.$displayName.'</label>';
@@ -140,9 +142,9 @@ function displayMetaSettingsGroup($groupDisplayName, $groupDivId, $groupNumber, 
     foreach ($theUserMeta as $key => $value) {
         if ($value[2] == $groupNumber) {
             if (isset($metaSettings[$value[1]])){
-                renderUserSetting($value[0], $value[1], $metaSettings[$value[1]], $value[3], $value[4], $whichMeta);
+                renderTheseSettings($value[0], $value[1], $metaSettings[$value[1]], $value[3], $value[4], $whichMeta);
             } else {
-                renderUserSetting($value[0], $value[1], '', $value[3], $value[4], $whichMeta);
+                renderTheseSettings($value[0], $value[1], '', $value[3], $value[4], $whichMeta);
             }
         }
     }
