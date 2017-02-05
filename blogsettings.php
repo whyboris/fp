@@ -50,7 +50,7 @@ $blogId = $blogSettings['_id'];
 
 
 // Display Group 1
-displayMetaSettingsGroup('Personal', 'blogMetabox', 3, 'blog');
+displayMetaSettingsGroup('Main settings', 'blogMetabox', 3, 'blog');
 
 // Display Group 2
 //displayMetaSettingsGroup('Professional', 'professionalMetabox', 2);

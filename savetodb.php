@@ -6,21 +6,6 @@ require('connection.php');
 
 include('usersettingsfactory.php');
 
-
-function showMe($var){
-    echo "<pre>";
-    print_r($var);
-    echo "</pre>";
-}
-
-// LOG STUFF
-echo "POST:";
-echo "<br>";
-showMe($_POST);
-//showMe($allUserMeta);
-//showMe($allBlogMeta);
-
-
 $redirect = 'index.php';
 
 if (!empty($_POST)) {
@@ -98,10 +83,15 @@ if (!empty($_POST)) {
 
 }
 
-//showMe($insertionArray);
+// LOG STUFF
+// echo "POST:";
+// echo "<br>";
+// showMe($_POST);
+// showMe($allUserMeta);
+// showMe($allBlogMeta);
+// showMe($insertionArray);
+// echo "SOURCE OF DATA:";
+// echo "<br>";
+// showMe($sourceOfData);
 
-echo "SOURCE OF DATA:";
-echo "<br>";
-showMe($sourceOfData);
-
-//header('Location: ' . $redirect);
+header('Location: ' . $redirect);

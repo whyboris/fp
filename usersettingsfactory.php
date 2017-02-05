@@ -36,9 +36,9 @@ registerMeta('Department', 'department', 'user', 2, $deptArray, 'radio');
 registerMeta('Privileges', 'privilege', 'user', 2, $privilegeArray, 'checkboxes');
 
 // for BLOG SETTINGS
-registerMeta('DO NOT CHANGE', 'name', 'blog', 3);
-registerMeta('Category', 'category', 'blog', 3);
+registerMeta('Name of blog', 'name', 'blog', 3);
 registerMeta('Subtitle', 'subtitle', 'blog', 3);
+registerMeta('Category', 'category', 'blog', 3);
 registerMeta('Primary Author', 'primaryAuthor', 'blog', 3);
 
 /**
