@@ -84,9 +84,12 @@ if (!empty($_POST)) {
     } else {
     // REFACTOR ABOVE!
 
-        // update
+        // OLD update
         $id = $_POST['name'];
         $query = array('name'=> $id);
+        // new update
+        $id = $_POST['id'];
+        $query = array('_id'=> new MongoId($id));
         $theCollection->update($query, array('$set' => $insertionArray));
 
         // INSERT -- temporary until I create Register page

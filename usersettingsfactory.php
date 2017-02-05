@@ -24,6 +24,7 @@ $privilegeArray = array(
 // Register Fields for Group 1
 registerMeta('First Name', 'name', 'user', 1);
 registerMeta('Last Name', 'lastName', 'user', 1);
+registerMeta('Blog ID', 'blogId', 'user', 1);
 registerMeta('Twitter', 'twitter', 'user', 1);
 registerMeta('Facebook', 'facebook', 'user', 1);
 registerMeta('Instagram', 'instagram', 'user', 1);

@@ -13,6 +13,7 @@ include('usersettingsfactory.php');
 $id = $_SESSION['name'];
 $query = array('name'=> $id);
 $userSettings = $userCollection->findOne($query);
+$userId = $userSettings['_id'];
 
 ?>
 
@@ -24,7 +25,7 @@ $userSettings = $userCollection->findOne($query);
 
             <form class="form-horizontal" action="savetodb.php" method="post">
 
-                <input style="text" class="hidden" name="id" value="<?php echo $id; ?>">
+                <input style="text" class="hidden" name="id" value="<?php echo $userId; ?>">
 
                 <input style="text" class="hidden" name="origin" value="user">
 
