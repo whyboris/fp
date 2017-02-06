@@ -8,4 +8,11 @@ $userCollection = $db->users;
 
 $blogCollection = $db->blogs;
 
+// for debug:
+function showMe($var){
+    echo "<pre>";
+    print_r($var);
+    echo "</pre>";
+}
+
 ?>

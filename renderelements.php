@@ -8,7 +8,7 @@
  * @param  string           $forWhatPage    either "user" or "post"
  * @return string/array                     string or array containing stored values
  */
-function fpGetMeta($fieldName, $forWhatPage) {
+function mpGetMeta($fieldName, $forWhatPage) {
 
     $arrayOfAllOptions = array();
 
@@ -20,6 +20,7 @@ function fpGetMeta($fieldName, $forWhatPage) {
         $arrayOfAllOptions = $userSettings;
     } elseif ($forWhatPage == 'blog') {
         global $blogSettings;
+        $arrayOfAllOptions = $blogSettings;
     }
 
     if (isset($arrayOfAllOptions[$fieldName])) {
@@ -32,7 +33,7 @@ function fpGetMeta($fieldName, $forWhatPage) {
 
 function renderDropdown($optionsArray, $fieldName, $forWhatPage) {
 
-    $dbValue = fpGetMeta($fieldName, $forWhatPage);
+    $dbValue = mpGetMeta($fieldName, $forWhatPage);
 
     echo '<div class="selectpicker">';
     echo '<select class="form-control" name="'. $fieldName . '">';
@@ -51,7 +52,7 @@ function renderDropdown($optionsArray, $fieldName, $forWhatPage) {
 
 function renderRadioButtons($optionsArray, $fieldName, $forWhatPage) {
 
-    $dbValue = fpGetMeta($fieldName, $forWhatPage);
+    $dbValue = mpGetMeta($fieldName, $forWhatPage);
 
     foreach ($optionsArray as $key => $value2) {
 
@@ -68,23 +69,25 @@ function renderRadioButtons($optionsArray, $fieldName, $forWhatPage) {
 
 function renderCheckboxes($optionsArray, $fieldName, $forWhatPage) {
 
-    $dbValue = fpGetMeta($fieldName, $forWhatPage);
+    //showMe($forWhatPage);
 
-    foreach ($optionsArray as $key => $value3) {
+    $dbValue = mpGetMeta($fieldName, $forWhatPage);
+
+    foreach ($optionsArray as $key3 => $value3) {
 
         $selected = '';
 
         // chosen value can be an array!
         if (isset($dbValue) && $dbValue != '') {
-            foreach ($dbValue as $key2 => $value2) {
-                if ($key == $value2) {
+            foreach ($dbValue as $key4 => $value4) {
+                if ($key3 == $value4) {
                     $selected = 'checked';
                 }
             }
         }
 
         echo '<div class="checkbox">';
-        echo '<label><input type="checkbox" name="' . $fieldName . '[]" value="'. $key . '" '.$selected.'>' . $value3 . '</label>';
+        echo '<label><input type="checkbox" name="' . $fieldName . '[]" value="'. $key3 . '" '.$selected.'>' . $value3 . '</label>';
         echo '</div>';
     }
 }

@@ -8,12 +8,6 @@ if(!empty($_SESSION['name'])){
     header('Location: login.php');
 }
 
-function showMe($var){
-    echo "<pre>";
-    print_r($var);
-    echo "</pre>";
-}
-
 ?>
 
 <html>

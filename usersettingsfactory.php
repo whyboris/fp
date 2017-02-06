@@ -24,21 +24,28 @@ $privilegeArray = array(
 // Register Fields for Group 1
 registerMeta('First Name', 'name', 'user', 1);
 registerMeta('Last Name', 'lastName', 'user', 1);
+registerMeta('Blog ID', 'blogId', 'user', 1);
 registerMeta('Twitter', 'twitter', 'user', 1);
 registerMeta('Facebook', 'facebook', 'user', 1);
 registerMeta('Instagram', 'instagram', 'user', 1);
 
 // Register Fields for Group 2
 registerMeta('Contributor Type', 'type', 'user', 2, $contribTypeArray, 'dropdown');
-registerMeta('Salary', 'salary', 'user', 2);
 registerMeta('Department', 'department', 'user', 2, $deptArray, 'radio');
 registerMeta('Privileges', 'privilege', 'user', 2, $privilegeArray, 'checkboxes');
+registerMeta('Salary', 'salary', 'user', 2);
 
 // for BLOG SETTINGS
-registerMeta('DO NOT CHANGE', 'name', 'blog', 3);
-registerMeta('Category', 'category', 'blog', 3);
+registerMeta('Name of blog', 'name', 'blog', 3);
 registerMeta('Subtitle', 'subtitle', 'blog', 3);
+registerMeta('Category', 'category', 'blog', 3);
 registerMeta('Primary Author', 'primaryAuthor', 'blog', 3);
+
+// for BLOG SETTINGS
+registerMeta('Dropdown', 'name1', 'blog', 4, $contribTypeArray, 'dropdown');
+registerMeta('Radio buttons', 'name2', 'blog', 4, $deptArray, 'radio');
+registerMeta('Checkboxes', 'name3', 'blog', 4, $privilegeArray, 'checkboxes');
+registerMeta('Comments', 'comments', 'blog', 4);
 
 /**
  * Register user meta field -- if no $selectionType set, defaults to text field
@@ -61,16 +68,19 @@ function registerMeta($displayName, $fieldName, $whoFor, $groupId = 1, $optionsA
 
 }
 
+// TODO -- maybe change the order so optional parameters come last
+
 /**
- * Render User Settings
+ * Render These Settings
  * @param  string   $displayName    [description]
  * @param  string   $fieldName      [description]
  * @param  mixed    $dbValue        current value stored in a databse (string or array)
  * @param  array    $optionsArray   OPTIONAL -- array containing options for user
  * @param  string   $selectionType  can be 'dropdown', 'radio', or 'checkboxes'
+ * @param  string   $whichMeta      can be 'user', 'blog'
  * @return void
  */
-function renderUserSetting($displayName, $fieldName, $dbValue, $optionsArray, $selectionType){
+function renderTheseSettings($displayName, $fieldName, $dbValue, $optionsArray, $selectionType, $whichMeta){
     echo '<div class="form-group">';
 
         echo '<label class="control-label col-sm-3" for="name">'.$displayName.'</label>';
@@ -82,13 +92,13 @@ function renderUserSetting($displayName, $fieldName, $dbValue, $optionsArray, $s
                 echo '<input type="text"  class="form-control" name="'.$fieldName.'" value="'.$dbValue.'">';
                 break;
             case 'dropdown':
-                renderDropdown($optionsArray, $fieldName, 'user');
+                renderDropdown($optionsArray, $fieldName, $whichMeta);
                 break;
             case 'radio':
-                renderRadioButtons($optionsArray, $fieldName, 'user');
+                renderRadioButtons($optionsArray, $fieldName, $whichMeta);
                 break;
             case 'checkboxes':
-                renderCheckboxes($optionsArray, $fieldName, 'user');
+                renderCheckboxes($optionsArray, $fieldName, $whichMeta);
                 break;
         }
 
@@ -114,8 +124,8 @@ function displayMetaSettingsGroup($groupDisplayName, $groupDivId, $groupNumber, 
     $theUserMeta = array();
 
     if ($whichMeta == 'blog') {
-        global $blogSettings;
         global $allBlogMeta;
+        global $blogSettings;
         $theUserMeta = $allBlogMeta;
         $metaSettings = $blogSettings;
     } elseif ($whichMeta == 'user'){
@@ -132,9 +142,9 @@ function displayMetaSettingsGroup($groupDisplayName, $groupDivId, $groupNumber, 
     foreach ($theUserMeta as $key => $value) {
         if ($value[2] == $groupNumber) {
             if (isset($metaSettings[$value[1]])){
-                renderUserSetting($value[0], $value[1], $metaSettings[$value[1]], $value[3], $value[4]);
+                renderTheseSettings($value[0], $value[1], $metaSettings[$value[1]], $value[3], $value[4], $whichMeta);
             } else {
-                renderUserSetting($value[0], $value[1], '', $value[3], $value[4]);
+                renderTheseSettings($value[0], $value[1], '', $value[3], $value[4], $whichMeta);
             }
         }
     }

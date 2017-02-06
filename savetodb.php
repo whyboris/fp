@@ -6,38 +6,19 @@ require('connection.php');
 
 include('usersettingsfactory.php');
 
-
-function showMe($var){
-    echo "<pre>";
-    print_r($var);
-    echo "</pre>";
-}
-
+$redirect = 'index.php';
 
 if (!empty($_POST)) {
 
-    //$name = $_POST['name'];
+    // either "user" or "blog" or "post"
+    $origin = $_POST['origin'];
 
     $insertionArray = array();
 
-    //showMe($allUserMeta);
-    //showMe($allBlogMeta);
-
-    // either "user" or "blog"
-    $origin = $_POST['origin'];
-
-    if ($origin == 'blog'){
-        $sourceOfData = $allBlogMeta;
-        $theCollection = $blogCollection;
-        $redirect = 'blogsettings.php';
-    } elseif ($origin == 'user') {
-        $sourceOfData = $allUserMeta;
-        $theCollection = $userCollection;
-        $redirect = 'usersettings.php';
-    } elseif ($origin == 'post') {
+    if ($origin == 'post') {
+        include('metaboxes.php');
         $sourceOfData = $allMetaBoxes;
         $theCollection = $postCollection;
-        $redirect = 'index.php';
 
         // manually enter some fields
         // TODO -- automate later
@@ -45,6 +26,8 @@ if (!empty($_POST)) {
         $content = $_POST['content'];
         $excerpt = $_POST['excerpt'];
         $author = $_SESSION['name'];
+
+        $redirect = 'post.php?id=' . $_POST['id'];
 
         $insertionArray = array(
             'title'=>$title,
@@ -54,48 +37,52 @@ if (!empty($_POST)) {
             'time'=> new MongoDate(),
         );
 
-        include('metaboxes.php');
+    } elseif ($origin == 'blog'){
+        $sourceOfData = $allBlogMeta;
+        $theCollection = $blogCollection;
+        $redirect = 'blogsettings.php';
+    } elseif ($origin == 'user') {
+        $sourceOfData = $allUserMeta;
+        $theCollection = $userCollection;
+        $redirect = 'usersettings.php';
+    }
 
-        // REFACTOR BELOW:
-        foreach ($sourceOfData as $key => $value) {
-            $current = $sourceOfData[$key][1];
+    // prepare the array to insert into DB
+    // TODO -- allow all checkboxes to be unchecked -- currently they don't update if all unchecked!
+    foreach ($sourceOfData as $key => $value) {
+        $current = $sourceOfData[$key][1];
+        //showMe($current);
+        if (isset($_POST[$current])) {
             $insertionArray[$current]= $_POST[$current];
         }
-
-        if ($_POST['id'] != 0) {
-            // UPDATE current article
-            $id = $_POST['id'];
-            $query = array('_id'=> new MongoId($id));
-            $theCollection->update($query, array('$set' => $insertionArray));
-        } else {
-            // INSERT new article
-            $theCollection->insert($insertionArray);
-        }
-
-        header('Location: ' . $redirect);
-        // REFACTOR ABOVE!
-
     }
 
-    foreach ($sourceOfData as $key => $value) {
-        $current = $_POST[$value[1]];
-        if (isset($current) && $current != '') {
-            $insertionArray[$value[1]] = $current;
-        }
+    if ($_POST['id'] != 0) {
+        // UPDATE current article
+        $id = $_POST['id'];
+        $query = array('_id'=> new MongoId($id));
+        // only updates fields that are in the form; doesn't update checkboxes if they are all disselected
+        // $theCollection->update($query, array('$set' => $insertionArray));
+        $theCollection->update($query, $insertionArray);
+
+    } else {
+        // INSERT new article
+        // TODO -- fix this -- may error out with blog settings & user settings
+        $theCollection->insert($insertionArray);
     }
 
-    // update
-    $id = $_POST['name'];
-    $query = array('name'=> $id);
-    $theCollection->update($query, array('$set' => $insertionArray));
-
-    // INSERT -- temporary until I create Register page
-    //$userCollection->insert($query);
-
-     //showMe($_POST);
-
-     //showMe($insertionArray);
 
 }
+
+// LOG STUFF
+// echo "POST:";
+// echo "<br>";
+// showMe($_POST);
+// showMe($allUserMeta);
+// showMe($allBlogMeta);
+// showMe($insertionArray);
+// echo "SOURCE OF DATA:";
+// echo "<br>";
+// showMe($sourceOfData);
 
 header('Location: ' . $redirect);
