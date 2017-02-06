@@ -61,7 +61,10 @@ if (!empty($_POST)) {
         // UPDATE current article
         $id = $_POST['id'];
         $query = array('_id'=> new MongoId($id));
-        $theCollection->update($query, array('$set' => $insertionArray));
+        // only updates fields that are in the form; doesn't update checkboxes if they are all disselected
+        // $theCollection->update($query, array('$set' => $insertionArray));
+        $theCollection->update($query, $insertionArray);
+
     } else {
         // INSERT new article
         // TODO -- fix this -- may error out with blog settings & user settings
