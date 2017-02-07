@@ -3,49 +3,7 @@
 $allUserMeta = array();
 $allBlogMeta = array();
 
-$contribTypeArray = array(
-    'contributor' => 'Contributor',
-    'editor' => 'Editor',
-    'staff' => 'Staff',
-);
 
-$deptArray = array(
-    'dev' => 'Developers',
-    'art' => 'Art',
-    'editorial' => 'Editorial',
-);
-
-$privilegeArray = array(
-    'coffee' => 'Free coffee',
-    'icecream' => 'Free ice cream',
-    'cookies' => 'Free cookies',
-);
-
-// Register Fields for Group 1
-registerMeta('First Name', 'name', 'user', 1);
-registerMeta('Last Name', 'lastName', 'user', 1);
-registerMeta('Blog ID', 'blogId', 'user', 1);
-registerMeta('Twitter', 'twitter', 'user', 1);
-registerMeta('Facebook', 'facebook', 'user', 1);
-registerMeta('Instagram', 'instagram', 'user', 1);
-
-// Register Fields for Group 2
-registerMeta('Contributor Type', 'type', 'user', 2, $contribTypeArray, 'dropdown');
-registerMeta('Department', 'department', 'user', 2, $deptArray, 'radio');
-registerMeta('Privileges', 'privilege', 'user', 2, $privilegeArray, 'checkboxes');
-registerMeta('Salary', 'salary', 'user', 2);
-
-// for BLOG SETTINGS
-registerMeta('Name of blog', 'name', 'blog', 3);
-registerMeta('Subtitle', 'subtitle', 'blog', 3);
-registerMeta('Category', 'category', 'blog', 3);
-registerMeta('Primary Author', 'primaryAuthor', 'blog', 3);
-
-// for BLOG SETTINGS
-registerMeta('Dropdown', 'name1', 'blog', 4, $contribTypeArray, 'dropdown');
-registerMeta('Radio buttons', 'name2', 'blog', 4, $deptArray, 'radio');
-registerMeta('Checkboxes', 'name3', 'blog', 4, $privilegeArray, 'checkboxes');
-registerMeta('Comments', 'comments', 'blog', 4);
 
 /**
  * Register user meta field -- if no $selectionType set, defaults to text field

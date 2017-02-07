@@ -8,6 +8,8 @@ require('connection.php');
 
 include('usersettingsfactory.php');
 
+include('user_contents.php');
+
 // grab user's settings from database
 // later will be an ID -- at the moment just use the NAME
 $id = $_SESSION['name'];

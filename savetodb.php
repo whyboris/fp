@@ -6,6 +6,10 @@ require('connection.php');
 
 include('usersettingsfactory.php');
 
+include('blog_contents.php');
+include('user_contents.php');
+include('post_contents.php');
+
 $redirect = 'index.php';
 
 if (!empty($_POST)) {
@@ -40,11 +44,13 @@ if (!empty($_POST)) {
     } elseif ($origin == 'blog'){
         $sourceOfData = $allBlogMeta;
         $theCollection = $blogCollection;
-        $redirect = 'blogsettings.php';
+        $redirect = 'blog.php';
+        // temporary solution to a bug
+        $insertionArray['blogId'] = $_POST['blogId'];
     } elseif ($origin == 'user') {
         $sourceOfData = $allUserMeta;
         $theCollection = $userCollection;
-        $redirect = 'usersettings.php';
+        $redirect = 'user.php';
     }
 
     // prepare the array to insert into DB
@@ -77,12 +83,12 @@ if (!empty($_POST)) {
 // LOG STUFF
 // echo "POST:";
 // echo "<br>";
-// showMe($_POST);
+showMe($_POST);
 // showMe($allUserMeta);
-// showMe($allBlogMeta);
 // showMe($insertionArray);
+ showMe($allBlogMeta);
 // echo "SOURCE OF DATA:";
 // echo "<br>";
 // showMe($sourceOfData);
 
-header('Location: ' . $redirect);
+//header('Location: ' . $redirect);
