@@ -8,7 +8,7 @@ include('usersettingsfactory.php');
 
 include('blog_contents.php');
 include('user_contents.php');
-include('post_contents.php');
+include_once('post_contents.php');
 
 $redirect = 'index.php';
 

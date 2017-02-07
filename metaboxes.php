@@ -1,6 +1,6 @@
 <?php
 
-include('post_contents.php');
+include_once('post_contents.php');
 include('metaboxfactory.php');
 
 function categoriesBox($uniqueId) {
