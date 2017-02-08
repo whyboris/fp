@@ -113,8 +113,6 @@ metaboxSuffix();
       <div class="modal-body">
 <?php
 
-include_once('renderelements.php');
-
 $screenOptions = array();
 
 foreach($allMetaBoxes as $key => $value) {

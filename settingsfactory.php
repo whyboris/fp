@@ -1,8 +1,10 @@
 <?php
 
+include('renderelements.php');
+
 $allUserMeta = array();
 $allBlogMeta = array();
-
+$allMetaBoxes = array();
 
 
 /**
@@ -65,7 +67,7 @@ function renderTheseSettings($displayName, $fieldName, $dbValue, $optionsArray, 
     echo '</div>';
 }
 
-include_once('renderelements.php');
+
 
 /**
  * Render all the user settings
@@ -111,8 +113,10 @@ function displayMetaSettingsGroup($groupDisplayName, $groupDivId, $groupNumber, 
 
 }
 
-//global $allMetaBoxes initialize empty array;
-$allMetaBoxes = array();
+
+/**
+ * CODE FOR METABOXES
+ */
 
 // Register meta boxes
 // stores all that was registered into an array for later retrieval
@@ -164,8 +168,4 @@ function metaboxSuffix() {
     echo '</div>';
 }
 
-
-include_once('renderelements.php');
-
-
- ?>
+?>
