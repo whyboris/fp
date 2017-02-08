@@ -6,7 +6,7 @@ include('metaboxfactory.php');
 
 require('connection.php');
 
-include('usersettingsfactory.php');
+include('settingsfactory.php');
 
 include('blog_contents.php');
 

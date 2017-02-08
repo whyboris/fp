@@ -4,7 +4,7 @@ session_start();
 
 require('connection.php');
 
-include('usersettingsfactory.php');
+include('settingsfactory.php');
 
 
 
