@@ -2,11 +2,9 @@
 
 include('header.php');
 
-include('metaboxfactory.php');
+include('settingsfactory.php');
 
 require('connection.php');
-
-include('settingsfactory.php');
 
 include('blog_contents.php');
 

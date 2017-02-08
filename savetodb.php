@@ -18,7 +18,6 @@ if (!empty($_POST)) {
     $insertionArray = array();
 
     if ($origin == 'post') {
-        include('metaboxfactory.php');
         include_once('post_contents.php');
         $sourceOfData = $allMetaBoxes;
         $theCollection = $postCollection;

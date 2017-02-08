@@ -1,7 +1,7 @@
 <?php
 
 include('header.php');
-include('metaboxfactory.php');
+include('settingsfactory.php');
 include('post_contents.php');
 
 $id = 0;

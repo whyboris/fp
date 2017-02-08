@@ -2,8 +2,6 @@
 
 include('header.php');
 
-include('metaboxfactory.php');
-
 require('connection.php');
 
 include('settingsfactory.php');
