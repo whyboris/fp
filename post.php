@@ -23,13 +23,13 @@ if(!empty($_GET['id'])){
 
 }
 
-// store all post meta-data into array!
-$arrayOfSelectedOptions = array();
+// store all post meta-data into array
+$postSettings = array();
 foreach ($allMetaBoxes as $key => $value) {
     $fieldName = $allMetaBoxes[$key][1];
     if (isset($post[$fieldName])) {
         $fieldValue = $post[$fieldName];
-        $arrayOfSelectedOptions[$fieldName] = $fieldValue;
+        $postSettings[$fieldName] = $fieldValue;
     }
 }
 
@@ -54,7 +54,6 @@ foreach ($allMetaBoxes as $key => $value) {
 // Default must-show fields:
 
 //metaboxPrefix('Title', 'titleMetabox');
-
 echo '<div class="">';
 echo '<label for="title">Headline</label>';
 echo '<input type="text"  class="form-control" name="title" value="' . $title . '">';
@@ -88,7 +87,7 @@ echo '<div class="pull-right"><input id="thePostSubmitButton" class="btn btn-def
 metaboxSuffix();
 
 
-//showMe($arrayOfSelectedOptions);
+//showMe($postSettings);
 
 
 ?>

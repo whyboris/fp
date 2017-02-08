@@ -13,8 +13,8 @@ function mpGetMeta($fieldName, $forWhatPage) {
     $arrayOfAllOptions = array();
 
     if ($forWhatPage == 'post') {
-        global $arrayOfSelectedOptions;
-        $arrayOfAllOptions = $arrayOfSelectedOptions;
+        global $postSettings;
+        $arrayOfAllOptions = $postSettings;
     } elseif ($forWhatPage == 'user') {
         global $userSettings;
         $arrayOfAllOptions = $userSettings;
