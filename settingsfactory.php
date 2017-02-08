@@ -1,60 +1,20 @@
 <?php
 
+include('renderelements.php');
+
 $allUserMeta = array();
 $allBlogMeta = array();
+$allMetaBoxes = array();
 
-$contribTypeArray = array(
-    'contributor' => 'Contributor',
-    'editor' => 'Editor',
-    'staff' => 'Staff',
-);
-
-$deptArray = array(
-    'dev' => 'Developers',
-    'art' => 'Art',
-    'editorial' => 'Editorial',
-);
-
-$privilegeArray = array(
-    'coffee' => 'Free coffee',
-    'icecream' => 'Free ice cream',
-    'cookies' => 'Free cookies',
-);
-
-// Register Fields for Group 1
-registerMeta('First Name', 'name', 'user', 1);
-registerMeta('Last Name', 'lastName', 'user', 1);
-registerMeta('Blog ID', 'blogId', 'user', 1);
-registerMeta('Twitter', 'twitter', 'user', 1);
-registerMeta('Facebook', 'facebook', 'user', 1);
-registerMeta('Instagram', 'instagram', 'user', 1);
-
-// Register Fields for Group 2
-registerMeta('Contributor Type', 'type', 'user', 2, $contribTypeArray, 'dropdown');
-registerMeta('Department', 'department', 'user', 2, $deptArray, 'radio');
-registerMeta('Privileges', 'privilege', 'user', 2, $privilegeArray, 'checkboxes');
-registerMeta('Salary', 'salary', 'user', 2);
-
-// for BLOG SETTINGS
-registerMeta('Name of blog', 'name', 'blog', 3);
-registerMeta('Subtitle', 'subtitle', 'blog', 3);
-registerMeta('Category', 'category', 'blog', 3);
-registerMeta('Primary Author', 'primaryAuthor', 'blog', 3);
-
-// for BLOG SETTINGS
-registerMeta('Dropdown', 'name1', 'blog', 4, $contribTypeArray, 'dropdown');
-registerMeta('Radio buttons', 'name2', 'blog', 4, $deptArray, 'radio');
-registerMeta('Checkboxes', 'name3', 'blog', 4, $privilegeArray, 'checkboxes');
-registerMeta('Comments', 'comments', 'blog', 4);
 
 /**
- * Register user meta field -- if no $selectionType set, defaults to text field
+ * Register meta field -- if no $selectionType set, defaults to text field
  * @param  string   $displayName    Name of field shown to user
  * @param  string   $fieldName      field name for database
  * @param  string   $whoFor         either 'user', or 'blog'
  * @param  integer  $groupId        categorize entries into groups
  * @param  array    $optionsArray   array of options if selection type is not null
- * @param  string   $selectionType  Must be 'dropdown', 'radio', 'checkboxes'
+ * @param  string   $selectionType  Must be 'dropdown', 'radio', 'checkboxes'; if left blank, defaults to text field
  * @return void
  */
 function registerMeta($displayName, $fieldName, $whoFor, $groupId = 1, $optionsArray = null, $selectionType = null) {
@@ -107,10 +67,10 @@ function renderTheseSettings($displayName, $fieldName, $dbValue, $optionsArray, 
     echo '</div>';
 }
 
-include_once('renderelements.php');
+
 
 /**
- * Render all the user settings
+ * Render a particular group of settings
  *
  * Separates into groups
  * @param  string   $groupDisplayName   Group name to display
@@ -154,4 +114,58 @@ function displayMetaSettingsGroup($groupDisplayName, $groupDivId, $groupNumber, 
 }
 
 
- ?>
+/**
+ * CODE FOR METABOXES
+ */
+
+// Register meta boxes
+// stores all that was registered into an array for later retrieval
+function registerMetaBox($displayName, $uniqueId, $functionToCall, $order = 5) {
+    global $allMetaBoxes;
+    array_push($allMetaBoxes, array($displayName, $uniqueId, $functionToCall, $order));
+}
+
+
+// output metabox HTML
+function displayAllMetaBoxes(){
+
+    global $allMetaBoxes;
+
+    // custom sort the metaboxes according to their order (4th element in array)
+    function compareOrder($a, $b) {
+        return $a['3'] - $b['3'];
+    }
+    usort($allMetaBoxes, 'compareOrder');
+
+    foreach ($allMetaBoxes as $key => $value) {
+        metaboxPrefix($allMetaBoxes[$key][0],$allMetaBoxes[$key][1]);
+        // execute the function registered with its metabox
+        $allMetaBoxes[$key][2]($allMetaBoxes[$key][1]);
+        metaboxSuffix();
+    }
+
+}
+
+// metabox top HTML
+function metaboxPrefix($displayName, $uniqueId) {
+    echo '<div class="panel panel-default" id="' . $uniqueId . '">';
+    //echo '<label for="' . $uniqueId . '">' . $displayName. '</label><br>';
+    echo '<div class="panel-heading">' . $displayName;
+    // toggle icon div
+    //echo '<div class="pull-right"><a href="#'. $uniqueId .'Panel" data-toggle="collapse" class="text-right btn btn-xs">&#x25BE;</a></div>';
+
+    echo '<div class="pull-right"><span class="arrow-toggle" data-toggle="collapse" data-target="#'. $uniqueId .'Panel" id="collapseP"><span class="icon-arrow-down"><btn class="btn btn-default btn-circle">&uarr;</button></span><span class="icon-arrow-up"><btn class="btn btn-default btn-circle">&darr;</button></span></span></div>';
+
+    echo '</div>';
+    echo '<div id="'.$uniqueId.'Panel" class="panel-collapse collapse in">';
+    echo '<div class="panel-body">';
+}
+
+// metabox bottom HTML
+function metaboxSuffix() {
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+}
+
+?>

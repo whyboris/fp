@@ -2,11 +2,11 @@
 
 include('header.php');
 
-include('metaboxfactory.php');
+include('settingsfactory.php');
 
 require('connection.php');
 
-include('usersettingsfactory.php');
+include('blog_contents.php');
 
 // TEMPORARY WORKFLOW:
 // get user's primary blog -- show them settings for that blog
@@ -27,7 +27,7 @@ $blogId = $userSettings['blogId'];
 
 $query = array('blogId'=>$blogId);
 $blogSettings = $blogCollection->findOne($query);
-$blogId = $blogSettings['_id'];
+$mongoBlogId = $blogSettings['_id'];
 
 //showMe($blogId);
 
@@ -41,7 +41,9 @@ $blogId = $blogSettings['_id'];
 
             <form class="form-horizontal" action="savetodb.php" method="post">
 
-                <input style="text" class="hidden" name="id" value="<?php echo $blogId; ?>">
+                <input style="text" class="hidden" name="blogId" value="<?php echo $blogId; ?>">
+
+                <input style="text" class="hidden" name="id" value="<?php echo $mongoBlogId; ?>">
 
                 <input style="text" class="hidden" name="origin" value="blog">
 

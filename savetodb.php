@@ -4,7 +4,9 @@ session_start();
 
 require('connection.php');
 
-include('usersettingsfactory.php');
+include('settingsfactory.php');
+
+
 
 $redirect = 'index.php';
 
@@ -16,7 +18,7 @@ if (!empty($_POST)) {
     $insertionArray = array();
 
     if ($origin == 'post') {
-        include('metaboxes.php');
+        include_once('post_contents.php');
         $sourceOfData = $allMetaBoxes;
         $theCollection = $postCollection;
 
@@ -38,13 +40,17 @@ if (!empty($_POST)) {
         );
 
     } elseif ($origin == 'blog'){
+        include('blog_contents.php');
         $sourceOfData = $allBlogMeta;
         $theCollection = $blogCollection;
-        $redirect = 'blogsettings.php';
+        $redirect = 'blog.php';
+        // temporary solution to a bug
+        $insertionArray['blogId'] = $_POST['blogId'];
     } elseif ($origin == 'user') {
+        include('user_contents.php');
         $sourceOfData = $allUserMeta;
         $theCollection = $userCollection;
-        $redirect = 'usersettings.php';
+        $redirect = 'user.php';
     }
 
     // prepare the array to insert into DB
@@ -79,8 +85,8 @@ if (!empty($_POST)) {
 // echo "<br>";
 // showMe($_POST);
 // showMe($allUserMeta);
-// showMe($allBlogMeta);
 // showMe($insertionArray);
+// showMe($allBlogMeta);
 // echo "SOURCE OF DATA:";
 // echo "<br>";
 // showMe($sourceOfData);

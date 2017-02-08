@@ -2,11 +2,11 @@
 
 include('header.php');
 
-include('metaboxfactory.php');
-
 require('connection.php');
 
-include('usersettingsfactory.php');
+include('settingsfactory.php');
+
+include('user_contents.php');
 
 // grab user's settings from database
 // later will be an ID -- at the moment just use the NAME

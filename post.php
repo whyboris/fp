@@ -1,8 +1,8 @@
 <?php
 
 include('header.php');
-
-include('metaboxes.php');
+include('settingsfactory.php');
+include('post_contents.php');
 
 $id = 0;
 $title = '';
@@ -112,8 +112,6 @@ metaboxSuffix();
       </div>
       <div class="modal-body">
 <?php
-
-include_once('renderelements.php');
 
 $screenOptions = array();
 

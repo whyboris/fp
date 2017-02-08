@@ -34,6 +34,7 @@ include('header.php');
 
     echo "<br>";
     echo 'You have ' . $article_count . ' articles published!<br/>';
+    echo "<br>";
 
     if ($article_count > 0) {
     ?>
