@@ -8,13 +8,13 @@ $allMetaBoxes = array();
 
 
 /**
- * Register user meta field -- if no $selectionType set, defaults to text field
+ * Register meta field -- if no $selectionType set, defaults to text field
  * @param  string   $displayName    Name of field shown to user
  * @param  string   $fieldName      field name for database
  * @param  string   $whoFor         either 'user', or 'blog'
  * @param  integer  $groupId        categorize entries into groups
  * @param  array    $optionsArray   array of options if selection type is not null
- * @param  string   $selectionType  Must be 'dropdown', 'radio', 'checkboxes'
+ * @param  string   $selectionType  Must be 'dropdown', 'radio', 'checkboxes'; if left blank, defaults to text field
  * @return void
  */
 function registerMeta($displayName, $fieldName, $whoFor, $groupId = 1, $optionsArray = null, $selectionType = null) {
@@ -70,7 +70,7 @@ function renderTheseSettings($displayName, $fieldName, $dbValue, $optionsArray, 
 
 
 /**
- * Render all the user settings
+ * Render a particular group of settings
  *
  * Separates into groups
  * @param  string   $groupDisplayName   Group name to display
