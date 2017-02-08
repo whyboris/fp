@@ -12,15 +12,19 @@ function mpGetMeta($fieldName, $forWhatPage) {
 
     $arrayOfAllOptions = array();
 
-    if ($forWhatPage == 'post') {
-        global $postSettings;
-        $arrayOfAllOptions = $postSettings;
-    } elseif ($forWhatPage == 'user') {
-        global $userSettings;
-        $arrayOfAllOptions = $userSettings;
-    } elseif ($forWhatPage == 'blog') {
-        global $blogSettings;
-        $arrayOfAllOptions = $blogSettings;
+    switch($forWhatPage) {
+        case 'post':
+            global $postSettings;
+            $arrayOfAllOptions = $postSettings;
+            break;
+        case 'user':
+            global $userSettings;
+            $arrayOfAllOptions = $userSettings;
+            break;
+        case 'blog':
+            global $blogSettings;
+            $arrayOfAllOptions = $blogSettings;
+            break;
     }
 
     if (isset($arrayOfAllOptions[$fieldName])) {
