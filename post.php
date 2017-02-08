@@ -1,8 +1,8 @@
 <?php
 
 include('header.php');
-
-include('metaboxes.php');
+include('metaboxfactory.php');
+include('post_contents.php');
 
 $id = 0;
 $title = '';

@@ -6,9 +6,7 @@ require('connection.php');
 
 include('usersettingsfactory.php');
 
-include('blog_contents.php');
-include('user_contents.php');
-include_once('post_contents.php');
+
 
 $redirect = 'index.php';
 
@@ -20,7 +18,8 @@ if (!empty($_POST)) {
     $insertionArray = array();
 
     if ($origin == 'post') {
-        include('metaboxes.php');
+        include('metaboxfactory.php');
+        include_once('post_contents.php');
         $sourceOfData = $allMetaBoxes;
         $theCollection = $postCollection;
 
@@ -42,12 +41,14 @@ if (!empty($_POST)) {
         );
 
     } elseif ($origin == 'blog'){
+        include('blog_contents.php');
         $sourceOfData = $allBlogMeta;
         $theCollection = $blogCollection;
         $redirect = 'blog.php';
         // temporary solution to a bug
         $insertionArray['blogId'] = $_POST['blogId'];
     } elseif ($origin == 'user') {
+        include('user_contents.php');
         $sourceOfData = $allUserMeta;
         $theCollection = $userCollection;
         $redirect = 'user.php';
@@ -83,12 +84,12 @@ if (!empty($_POST)) {
 // LOG STUFF
 // echo "POST:";
 // echo "<br>";
-showMe($_POST);
+// showMe($_POST);
 // showMe($allUserMeta);
 // showMe($insertionArray);
- showMe($allBlogMeta);
+// showMe($allBlogMeta);
 // echo "SOURCE OF DATA:";
 // echo "<br>";
 // showMe($sourceOfData);
 
-//header('Location: ' . $redirect);
+header('Location: ' . $redirect);
