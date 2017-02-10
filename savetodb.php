@@ -29,7 +29,11 @@ if (!empty($_POST)) {
         $excerpt = $_POST['excerpt'];
         $author = $_SESSION['name'];
 
-        $redirect = 'post.php?id=' . $_POST['id'];
+        if ($_POST['id'] != 0) {
+            $redirect = 'post.php?id=' . $_POST['id'];
+        } else {
+            $redirect = 'index.php';
+        }
 
         $insertionArray = array(
             'title'=>$title,
@@ -64,15 +68,18 @@ if (!empty($_POST)) {
     }
 
     if ($_POST['id'] != 0) {
-        // UPDATE current article
+        // UPDATE current item
         $id = $_POST['id'];
         $query = array('_id'=> new MongoId($id));
-        // only updates fields that are in the form; doesn't update checkboxes if they are all disselected
+
+        // Next line of code only updates fields that are in the form; doesn't update checkboxes if they are all disselected
         // $theCollection->update($query, array('$set' => $insertionArray));
+
+        // updates entire record in the collection
         $theCollection->update($query, $insertionArray);
 
     } else {
-        // INSERT new article
+        // INSERT new item
         // TODO -- fix this -- may error out with blog settings & user settings
         $theCollection->insert($insertionArray);
     }
