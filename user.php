@@ -10,16 +10,19 @@ include('user_contents.php');
 
 // grab user's settings from database
 // later will be an ID -- at the moment just use the NAME
-
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $query = array('_id'=> new MongoId($id));
+if (isset($_GET['newUser']) && ($_GET['newUser']=='yes')){
+    // don't grab anything from the database
 } else {
-    $id = $_SESSION['name'];
-    $query = array('name'=> $id);
-}
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $query = array('_id'=> new MongoId($id));
+    } else {
+        $id = $_SESSION['name'];
+        $query = array('name'=> $id);
+    }
     $userSettings = $userCollection->findOne($query);
     $userId = $userSettings['_id'];
+}
 
 ?>
 
