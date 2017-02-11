@@ -54,7 +54,11 @@ if (!empty($_POST)) {
         include('user_contents.php');
         $sourceOfData = $allUserMeta;
         $theCollection = $userCollection;
-        $redirect = 'user.php';
+        if ($_POST['id'] != 0) {
+            $redirect = 'user.php?id=' . $_POST['id'];
+        } else {
+            $redirect = 'user.php';
+        }
     }
 
     // prepare the array to insert into DB
