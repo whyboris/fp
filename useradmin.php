@@ -38,14 +38,9 @@ include('header.php');
             <thead>
                 <tr>
                     <th><center>#</center></th>
-<?php
-
-    if ($isAdmin == true){
-        echo "<th>Author</th>";
-    }
-?>
-                    <th>Name</th>
+                    <th>Username</th>
                     <th>Last Name</th>
+                    <th>Blog</th>
                     <th>Type</th>
                     <th><center>Department</center></th>
                 </tr>
