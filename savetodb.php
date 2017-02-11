@@ -47,7 +47,11 @@ if (!empty($_POST)) {
         include('blog_contents.php');
         $sourceOfData = $allBlogMeta;
         $theCollection = $blogCollection;
-        $redirect = 'blog.php';
+        if ($_POST['id'] != 0) {
+            $redirect = 'blog.php?id=' . $_POST['id'];
+        } else {
+            $redirect = 'blog.php';
+        }
         // temporary solution to a bug
         $insertionArray['blogId'] = $_POST['blogId'];
     } elseif ($origin == 'user') {

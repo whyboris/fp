@@ -9,7 +9,7 @@ include('header.php');
 <center>
 
     <div class="row">
-        <div class="col-md-2 col-md-offset-5"><a href="post.php"><button type="button" class="btn btn-default">Create New User</button></a></div>
+        <div class="col-md-2 col-md-offset-5"><a href="user.php?newUser=yes"><button type="button" class="btn btn-default">Create New User</button></a></div>
     </div>
 
 <div class="row">
@@ -49,15 +49,8 @@ include('header.php');
                 <?php foreach($users as $user){ ?>
                     <tr>
                         <td><center><a href="user.php?id=<?php echo $user['_id']; ?>"><?php echo $tempCounter; $tempCounter++ ?></a></center></td>
-<?php
 
-    if ($isAdmin == true){
-        echo "<td>";
-        echo $user['name'];
-        echo "</td>";
-    }
-
-?>
+                        <td><?php echo $user['name']; ?></td>
                         <td><?php echo $user['lastName']; ?></td>
                         <td><?php echo $user['blogId']; ?></td>
                         <td><?php echo $user['type']; ?></td>

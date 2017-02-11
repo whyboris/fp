@@ -79,7 +79,9 @@ if(!empty($_SESSION['name'])){
                     <li><a href="blog.php">Blog settings</a></li>
                 <?php
                     if ($userName == 'admin') {
+                        echo '<li role="separator" class="divider"></li>';
                         echo '<li><a href="useradmin.php">Administer Users</a></li>';
+                        echo '<li><a href="blogadmin.php">Administer Blogs</a></li>';
                     }
                 ?>
                     <li role="separator" class="divider"></li>
