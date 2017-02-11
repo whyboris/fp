@@ -77,6 +77,11 @@ if(!empty($_SESSION['name'])){
                 <ul class="dropdown-menu">
                     <li><a href="user.php">Profile</a></li>
                     <li><a href="blog.php">Blog settings</a></li>
+                <?php
+                    if ($userName == 'admin') {
+                        echo '<li><a href="useradmin.php">Administer Users</a></li>';
+                    }
+                ?>
                     <li role="separator" class="divider"></li>
                     <li><a href="logout.php">Log out</a></li>
                 </ul>
