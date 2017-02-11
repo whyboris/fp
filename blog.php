@@ -17,27 +17,30 @@ include('blog_contents.php');
 
 // grab user's settings from database
 // later will be an ID -- at the moment just use the NAME
-
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $query = array('_id'=> new MongoId($id));
-
+if (isset($_GET['newBlog']) && ($_GET['newBlog']=='yes')){
+    // don't grab anything from the database
 } else {
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $query = array('_id'=> new MongoId($id));
 
-    $id = $_SESSION['name'];
-    $query = array('name'=> $id);
-    $userSettings = $userCollection->findOne($query);
-    // find user's default blog
-    //showMe($userSettings);
-    // get blog ID so they can edit edit it
-    $blogId = $userSettings['blogId'];
-    $query = array('blogId'=>$blogId);
+    } else {
+
+        $id = $_SESSION['name'];
+        $query = array('name'=> $id);
+        $userSettings = $userCollection->findOne($query);
+        // find user's default blog
+        //showMe($userSettings);
+        // get blog ID so they can edit edit it
+        $blogId = $userSettings['blogId'];
+        $query = array('blogId'=>$blogId);
+    }
+
+    $blogSettings = $blogCollection->findOne($query);
+    $mongoBlogId = $blogSettings['_id'];
+
+    $blogId = $blogSettings['blogId'];
 }
-
-$blogSettings = $blogCollection->findOne($query);
-$mongoBlogId = $blogSettings['_id'];
-
-$blogId = $blogSettings['blogId'];
 
 //showMe($blogId);
 
@@ -51,7 +54,7 @@ $blogId = $blogSettings['blogId'];
 
             <form class="form-horizontal" action="savetodb.php" method="post">
 
-                <input style="text" class="hidden" name="blogId" value="<?php echo $blogId; ?>">
+                <!--<input style="text" class="hidden" name="blogId" value="<?php echo $blogId; ?>">-->
 
                 <input style="text" class="hidden" name="id" value="<?php echo $mongoBlogId; ?>">
 

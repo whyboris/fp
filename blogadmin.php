@@ -9,7 +9,7 @@ include('header.php');
 <center>
 
     <div class="row">
-        <div class="col-md-2 col-md-offset-5"><a href="blog.php"><button type="button" class="btn btn-default">Create New Blog</button></a></div>
+        <div class="col-md-2 col-md-offset-5"><a href="blog.php?newBlog=yes"><button type="button" class="btn btn-default">Create New Blog</button></a></div>
     </div>
 
 <div class="row">
@@ -43,6 +43,7 @@ include('header.php');
                     <th>Subtitle</th>
                     <th>Category</th>
                     <th><center>Primary Author</center></th>
+                    <th><center>Delete</center></th>
                 </tr>
             </thead>
             <tbody>
@@ -55,6 +56,7 @@ include('header.php');
                         <td><?php echo $blog['subtitle']; ?></td>
                         <td><?php echo $blog['category']; ?></td>
                         <td><?php echo $blog['primaryAuthor']; ?></td>
+                        <td><center><a href="delete.php?id=<?php echo $user['_id']; ?>&item=blog">x</a></center></td>
                     </tr>
                 <?php } ?>
             </tbody>

@@ -72,7 +72,7 @@ include('header.php');
                         <td><?php echo $post['title']; ?></td>
                         <td><?php echo substr($post['excerpt'], 0, 30) . '...'; ?></td>
                         <td><?php echo date('Y-M-d h:i:s', $post['time']->sec); ?></td>
-                        <td><center><a href="postdelete.php?id=<?php echo $post['_id']; ?>">x</a></td>
+                        <td><center><a href="delete.php?id=<?php echo $post['_id']; ?>&item=post">x</a></td>
                     </tr>
                 <?php } ?>
             </tbody>

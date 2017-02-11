@@ -43,6 +43,7 @@ include('header.php');
                     <th>Blog</th>
                     <th>Type</th>
                     <th><center>Department</center></th>
+                    <th><center>Delete</center></th>
                 </tr>
             </thead>
             <tbody>
@@ -55,6 +56,7 @@ include('header.php');
                         <td><?php echo $user['blogId']; ?></td>
                         <td><?php echo $user['type']; ?></td>
                         <td><?php echo $user['department']; ?></td>
+                        <td><center><a href="delete.php?id=<?php echo $user['_id']; ?>&item=user">x</a></center></td>
                     </tr>
                 <?php } ?>
             </tbody>
