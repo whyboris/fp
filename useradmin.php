@@ -53,7 +53,7 @@ include('header.php');
             <tbody>
                 <?php foreach($users as $user){ ?>
                     <tr>
-                        <td><center><a href="post.php?id=<?php echo $user['_id']; ?>"><?php echo $tempCounter; $tempCounter++ ?></a></center></td>
+                        <td><center><a href="user.php?id=<?php echo $user['_id']; ?>"><?php echo $tempCounter; $tempCounter++ ?></a></center></td>
 <?php
 
     if ($isAdmin == true){
