@@ -17,17 +17,27 @@ include('blog_contents.php');
 
 // grab user's settings from database
 // later will be an ID -- at the moment just use the NAME
-$id = $_SESSION['name'];
-$query = array('name'=> $id);
-$userSettings = $userCollection->findOne($query);
-// find user's default blog
-//showMe($userSettings);
-// get blog ID so they can edit edit it
-$blogId = $userSettings['blogId'];
 
-$query = array('blogId'=>$blogId);
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $query = array('_id'=> new MongoId($id));
+
+} else {
+
+    $id = $_SESSION['name'];
+    $query = array('name'=> $id);
+    $userSettings = $userCollection->findOne($query);
+    // find user's default blog
+    //showMe($userSettings);
+    // get blog ID so they can edit edit it
+    $blogId = $userSettings['blogId'];
+    $query = array('blogId'=>$blogId);
+}
+
 $blogSettings = $blogCollection->findOne($query);
 $mongoBlogId = $blogSettings['_id'];
+
+$blogId = $blogSettings['blogId'];
 
 //showMe($blogId);
 
