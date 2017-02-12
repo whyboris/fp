@@ -4,6 +4,7 @@ $contribTypeArray = array(
     'contributor' => 'Contributor',
     'editor' => 'Editor',
     'staff' => 'Staff',
+    'admin' => 'Site Administrator'
 );
 
 $deptArray = array(

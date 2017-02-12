@@ -4,6 +4,14 @@ $dataTables = 1;
 
 include('header.php');
 
+$userType = $userCollection->findOne(array('name'=>$userName))['type'];
+
+if ($_SESSION['name'] == 'admin' || $userType == 'admin'){
+    // allow to view this page
+} else {
+    header('location: index.php');
+}
+
 ?>
 
 <center>
@@ -16,16 +24,7 @@ include('header.php');
 
 <?php
 
-    require 'connection.php';
-
-    $isAdmin = false;
-
-    if ($_SESSION['name'] == 'admin'){
-        $isAdmin = true;
-        $searchQuery = array();
-    } else {
-        $searchQuery = array('author'=>$_SESSION['name']);
-    }
+    $searchQuery = array();
 
     $users = $userCollection->find($searchQuery);
 

@@ -1,11 +1,8 @@
 <?php
 
+include_once('connection.php');
 include('header.php');
-
 include('settingsfactory.php');
-
-require('connection.php');
-
 include('blog_contents.php');
 
 // TEMPORARY WORKFLOW:
@@ -53,8 +50,6 @@ if (isset($_GET['newBlog']) && ($_GET['newBlog']=='yes')){
         <div class="col-md-offset-1 col-md-6">
 
             <form class="form-horizontal" action="savetodb.php" method="post">
-
-                <!--<input style="text" class="hidden" name="blogId" value="<?php echo $blogId; ?>">-->
 
                 <input style="text" class="hidden" name="id" value="<?php echo $mongoBlogId; ?>">
 

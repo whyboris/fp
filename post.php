@@ -11,7 +11,7 @@ $excerpt = '';
 
 if(!empty($_GET['id'])){
 
-    require 'connection.php';
+    include_once('connection.php');
 
     $id = $_GET['id'];
     $query = array('_id'=> new MongoId($id));

@@ -1,5 +1,7 @@
 <?php
 
+include_once('connection.php');
+
 session_start();
 
 if(!empty($_SESSION['name'])){
@@ -78,7 +80,10 @@ if(!empty($_SESSION['name'])){
                     <li><a href="user.php">Profile</a></li>
                     <li><a href="blog.php">Blog settings</a></li>
                 <?php
-                    if ($userName == 'admin') {
+
+                    $userType = $userCollection->findOne(array('name'=>$userName))['type'];
+
+                    if ($userName == 'admin' || $userType == 'admin') {
                         echo '<li role="separator" class="divider"></li>';
                         echo '<li><a href="useradmin.php">Administer Users</a></li>';
                         echo '<li><a href="blogadmin.php">Administer Blogs</a></li>';

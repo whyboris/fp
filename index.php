@@ -2,6 +2,7 @@
 
 $dataTables = 1;
 
+require 'connection.php';
 include('header.php');
 
 ?>
@@ -16,7 +17,6 @@ include('header.php');
 
 <?php
 
-    require 'connection.php';
 
     $isAdmin = false;
 

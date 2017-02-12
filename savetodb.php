@@ -2,7 +2,7 @@
 
 session_start();
 
-require('connection.php');
+include_once('connection.php');
 
 include('settingsfactory.php');
 
