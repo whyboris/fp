@@ -1,8 +1,8 @@
 <?php
 
-include('header.php');
+include_once('connection.php');
 
-require('connection.php');
+include('header.php');
 
 include('settingsfactory.php');
 

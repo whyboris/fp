@@ -21,6 +21,7 @@ $privilegeArray = array(
 
 
 // for BLOG SETTINGS
+registerMeta('Blog ID', 'blogId', 'blog', 3);
 registerMeta('Name of blog', 'name', 'blog', 3);
 registerMeta('Subtitle', 'subtitle', 'blog', 3);
 registerMeta('Category', 'category', 'blog', 3);

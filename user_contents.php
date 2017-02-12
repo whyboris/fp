@@ -4,6 +4,7 @@ $contribTypeArray = array(
     'contributor' => 'Contributor',
     'editor' => 'Editor',
     'staff' => 'Staff',
+    'admin' => 'Site Administrator'
 );
 
 $deptArray = array(
@@ -18,10 +19,29 @@ $privilegeArray = array(
     'cookies' => 'Free cookies',
 );
 
+function currentBlogs() {
+
+    // TODO -- clean up this blog-getting-function
+    global $blogCollection;
+    $result = $blogCollection->find()->sort(array("blogId" => -1));
+
+    //showMe((iterator_to_array($result)));
+
+    $arrayOfBlogs = array();
+
+    foreach($result as $key => $val) {
+        //showMe($val['blogId']);
+        //array_push($arrayOfBlogs, $val['blogId']);
+        $arrayOfBlogs[$val['blogId']] = $val['blogId'];
+    }
+
+    return $arrayOfBlogs;
+}
+
 // Register Fields for Group 1
 registerMeta('First Name', 'name', 'user', 1);
 registerMeta('Last Name', 'lastName', 'user', 1);
-registerMeta('Blog ID', 'blogId', 'user', 1);
+registerMeta('Blog ID', 'blogId', 'user', 1, currentBlogs(), 'dropdown');
 registerMeta('Twitter', 'twitter', 'user', 1);
 registerMeta('Facebook', 'facebook', 'user', 1);
 registerMeta('Instagram', 'instagram', 'user', 1);

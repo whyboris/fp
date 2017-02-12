@@ -4,6 +4,14 @@ $dataTables = 1;
 
 include('header.php');
 
+$userType = $userCollection->findOne(array('name'=>$userName))['type'];
+
+if ($_SESSION['name'] == 'admin' || $userType == 'admin'){
+    // allow to view this page
+} else {
+    header('location: index.php');
+}
+
 ?>
 
 <center>
@@ -16,16 +24,7 @@ include('header.php');
 
 <?php
 
-    require 'connection.php';
-
-    $isAdmin = false;
-
-    if ($_SESSION['name'] == 'admin'){
-        $isAdmin = true;
-        $searchQuery = array();
-    } else {
-        $searchQuery = array('author'=>$_SESSION['name']);
-    }
+    $searchQuery = array();
 
     $users = $userCollection->find($searchQuery);
 
@@ -43,6 +42,7 @@ include('header.php');
                     <th>Blog</th>
                     <th>Type</th>
                     <th><center>Department</center></th>
+                    <th><center>Delete</center></th>
                 </tr>
             </thead>
             <tbody>
@@ -55,6 +55,7 @@ include('header.php');
                         <td><?php echo $user['blogId']; ?></td>
                         <td><?php echo $user['type']; ?></td>
                         <td><?php echo $user['department']; ?></td>
+                        <td><center><a href="delete.php?id=<?php echo $user['_id']; ?>&item=user">x</a></center></td>
                     </tr>
                 <?php } ?>
             </tbody>
